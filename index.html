@@ -1,0 +1,385 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Silver Studio | Premium Trailer Restoration & Rentals</title>
+    <meta name="description"
+        content="Experience the nostalgia of vintage travel with premium trailer rentals and expert restoration services. Explore the golden age of glamping.">
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Playfair+Display:ital,wght@0,400;0,700;1,400&display=swap"
+        rel="stylesheet">
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Bootstrap Icons -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="css/styles.css">
+    <link rel="icon" type="image/png" href="assets/favicon.png">
+    <script>
+        (function() {
+            const savedTheme = localStorage.getItem('theme');
+            if (savedTheme === 'dark') {
+                document.documentElement.setAttribute('data-theme', 'dark');
+                document.body?.setAttribute('data-theme', 'dark');
+            }
+        })();
+    </script>
+</head>
+
+<body>
+
+    <!-- Header & Navigation -->
+    <header class="navbar navbar-expand-lg sticky-top">
+        <div class="container">
+            <a class="navbar-brand playfair logo-text text-primary" href="index.html">
+                <i class="bi bi-car-front-fill me-2"></i>Silver Studio
+            </a>
+
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto align-items-center">
+                    <li class="nav-item">
+                        <a class="nav-link active" href="index.html">Home 1</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="home-premium.html">Home 2</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="about.html">About</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="trailers.html">Trailers</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="restoration.html">Restoration</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="gallery.html">Gallery</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="contact.html">Contact</a>
+                    </li>
+                    <!-- Desktop Dashboard Dropdown -->
+                    <li class="nav-item ms-3 d-none d-lg-flex align-items-center dropdown">
+                        <a class="nav-link dropdown-toggle no-caret" href="#" id="dashboardDropdown" role="button"
+                            data-bs-toggle="dropdown" aria-expanded="false" title="Portals">
+                            <i class="bi bi-speedometer2 fs-5"></i>
+                        </a>
+                        <ul class="dropdown-menu dropdown-menu-end shadow border-0 mt-2"
+                            aria-labelledby="dashboardDropdown">
+                            <li>
+                                <h6 class="dropdown-header small text-muted text-uppercase tracking-wider">Access
+                                    Portals</h6>
+                            </li>
+                            <li><a class="dropdown-item py-2" href="dashboard.html"><i
+                                        class="bi bi-person-badge me-2"></i>Customer Portal</a></li>
+                            <li><a class="dropdown-item py-2" href="admin.html"><i
+                                        class="bi bi-shield-lock me-2"></i>Admin Console</a></li>
+                        </ul>
+                    </li>
+
+                    <!-- Mobile Dashboard Links -->
+                    <li class="nav-item d-lg-none">
+                        <a class="nav-link" href="dashboard.html">Customer Portal</a>
+                    </li>
+                    <li class="nav-item d-lg-none">
+                        <a class="nav-link" href="admin.html">Admin Console</a>
+                    </li>
+                    <li class="nav-item ms-3 d-flex align-items-center">
+                        <a href="signup.html" class="nav-link" title="Sign Up">
+                            <i class="bi bi-person-circle fs-5"></i>
+                        </a>
+                    </li>
+                    <li class="nav-item ms-3 d-flex align-items-center gap-2">
+                        <button id="theme-toggle" class="theme-toggle" title="Toggle Theme">
+                            <i class="bi bi-moon"></i>
+                        </button>
+                        <button id="rtl-toggle" class="rtl-toggle" title="Toggle RTL">
+                            <i class="bi bi-translate"></i>
+                        </button>
+                    </li>
+                    <li class="nav-item ms-3 d-flex align-items-center">
+                        <a href="booking.html" class="btn btn-primary btn-sm text-nowrap">Book Now</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero position-relative vh-100 d-flex align-items-center overflow-hidden">
+        <!-- Temporary Hero Placeholder -->
+        <div class="position-absolute top-0 left-0 w-100 h-100 bg-secondary"
+            style="background-image: url('https://images.unsplash.com/photo-1492144534655-ae79c964c9d7?auto=format&fit=crop&w=1920'); background-size: cover; background-position: center;">
+        </div>
+        <div class="position-absolute top-0 left-0 w-100 h-100 bg-dark opacity-50"></div>
+        <div class="container position-relative z-index-1 text-white">
+            <div class="row">
+                <div class="col-lg-8 mx-auto text-center">
+                    <h5 class="text-uppercase tracking-widest mb-3" style="letter-spacing: 3px;">The Art of Driving
+                    </h5>
+                    <h1 class="display-2 playfair mb-4">Wander with Wanderlust,<br>Rest in Comfort.</h1>
+                    <p class="lead mb-5">Premium car rentals and world-class driving services for the
+                        modern explorer.</p>
+                    <div class="d-flex flex-column flex-sm-row gap-3 justify-content-center align-items-center">
+                        <a href="trailers.html" class="btn btn-primary btn-lg hero-btn">Explore Fleet</a>
+                        <a href="restoration.html" class="btn btn-outline-light btn-lg hero-btn">Our Craftsmanship</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Featured Trailers -->
+    <section class="featured-trailers">
+        <div class="container">
+            <div class="text-center mb-5">
+                <h2 class="section-title">Our Featured Fleet</h2>
+                <p class="text-muted">Handpicked trailers for your next unforgettable adventure.</p>
+            </div>
+            <div class="row g-4 justify-content-center">
+                <!-- Trailer Card 1 -->
+                <div class="col-12 col-lg-4">
+                    <div class="trailer-card">
+                        <img src="https://dynamic-media-cdn.tripadvisor.com/media/photo-o/0a/08/c5/11/ferrari-tour-in-rome.jpg?w=900&h=500&s=1"
+                            class="img-fluid" alt="Sports Car">
+                        <div class="p-4">
+                            <h4 class="playfair">Porsche 911 Carrera</h4>
+                            <p class="small text-muted mb-3">2023 Model | 2 Seats | Auto</p>
+                            <div class="d-flex justify-content-between align-items-center">
+                                <span class="fw-bold">$180 / night</span>
+                                <a href="trailer-detail.html" class="btn btn-link text-primary p-0">View Details
+                                    <i class="bi bi-arrow-right"></i></a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- Trailer Card 2 -->
+                <div class="col-12 col-lg-4">
+                    <div class="trailer-card">
+                        <img src="https://images.unsplash.com/photo-1549317661-bd32c8ce0db2?auto=format&fit=crop&w=600"
+                            class="img-fluid" alt="Luxury SUV">
+                        <div class="p-4">
+                            <h4 class="playfair">Range Rover Sport</h4>
+                            <p class="small text-muted mb-3">2024 Model | 5 Seats | Auto</p>
+                            <div class="d-flex justify-content-between align-items-center">
+                                <span class="fw-bold">$150 / night</span>
+                                <a href="trailer-detail.html" class="btn btn-link text-primary p-0">View Details
+                                    <i class="bi bi-arrow-right"></i></a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- Trailer Card 3 -->
+                <div class="col-12 col-lg-4">
+                    <div class="trailer-card">
+                        <img src="https://images.unsplash.com/photo-1560958089-b8a1929cea89?auto=format&fit=crop&w=600"
+                            class="img-fluid" alt="Convertible Car">
+                        <div class="p-4">
+                            <h4 class="playfair">BMW Z4 Roadster</h4>
+                            <p class="small text-muted mb-3">2023 Model | 2 Seats | Auto</p>
+                            <div class="d-flex justify-content-between align-items-center">
+                                <span class="fw-bold">$120 / night</span>
+                                <a href="trailer-detail.html" class="btn btn-link text-primary p-0">View Details
+                                    <i class="bi bi-arrow-right"></i></a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- How It Works Section -->
+    <section class="how-it-works py-5">
+        <div class="container">
+            <div class="text-center mb-5">
+                <h2 class="section-title">How It Works</h2>
+                <p class="text-muted">Rent your dream car in three simple steps.</p>
+            </div>
+            <div class="row text-center g-4">
+                <div class="col-12 col-lg-4">
+                    <div class="p-4 bg-light-custom rounded shadow-sm h-100">
+                        <img src="https://images.unsplash.com/photo-1593941707882-a5bba14938c7?auto=format&fit=crop&w=150&h=150"
+                            alt="Book Online" class="img-fluid rounded-circle mb-3 border border-3 border-primary"
+                            style="object-fit:cover; width:100px; height:100px;">
+                        <h4 class="playfair">1. Book Online</h4>
+                        <p class="text-muted">Choose your preferred car and select your rental dates through our secure
+                            platform.</p>
+                    </div>
+                </div>
+                <div class="col-12 col-lg-4">
+                    <div class="p-4 bg-light-custom rounded shadow-sm h-100">
+                        <img src="https://images.unsplash.com/photo-1549317661-bd32c8ce0db2?auto=format&fit=crop&w=150&h=150"
+                            alt="Pick Up" class="img-fluid rounded-circle mb-3 border border-3 border-primary"
+                            style="object-fit:cover; width:100px; height:100px;">
+                        <h4 class="playfair">2. Pick Up Your Car</h4>
+                        <p class="text-muted">Visit our location or choose premium delivery to get the keys to your
+                            rental.</p>
+                    </div>
+                </div>
+                <div class="col-12 col-lg-4">
+                    <div class="p-4 bg-light-custom rounded shadow-sm h-100">
+                        <img src="https://images.unsplash.com/photo-1542362567-b07e54358753?auto=format&fit=crop&w=150&h=150"
+                            alt="Enjoy the Ride" class="img-fluid rounded-circle mb-3 border border-3 border-primary"
+                            style="object-fit:cover; width:100px; height:100px;">
+                        <h4 class="playfair">3. Enjoy the Ride</h4>
+                        <p class="text-muted">Experience the thrill of driving our premium vehicles wherever your
+                            journey takes you.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Why Choose Us -->
+    <section class="bg-light-custom py-5">
+        <div class="container">
+            <div class="row align-items-center">
+                <div class="col-lg-6 mb-4 mb-lg-0 text-center">
+                    <img src="https://images.unsplash.com/photo-1568605117036-5fe5e7bab0b7?auto=format&fit=crop&w=800"
+                        class="img-fluid rounded shadow mx-auto" alt="Experience Image">
+                </div>
+                <div class="col-lg-6 ps-lg-5 text-center text-lg-start">
+                    <h2 class="playfair mb-4">Why Escape With Us?</h2>
+                    <ul class="list-unstyled">
+                        <li class="mb-4 d-flex flex-column align-items-center text-center flex-lg-row align-items-lg-start text-lg-start">
+                            <i class="bi bi-star-fill text-primary mb-3 mb-lg-0 me-lg-3 fs-4"></i>
+                            <div>
+                                <h5 class="playfair">Authentic Craftsmanship</h5>
+                                <p class="text-muted">Every trailer in our fleet has been meticulously restored to its
+                                    original glory with modern comforts added discreetly.</p>
+                            </div>
+                        </li>
+                        <li class="mb-4 d-flex flex-column align-items-center text-center flex-lg-row align-items-lg-start text-lg-start">
+                            <i class="bi bi-globe text-primary mb-3 mb-lg-0 me-lg-3 fs-4"></i>
+                            <div>
+                                <h5 class="playfair">Sustainable Adventures</h5>
+                                <p class="text-muted">We promote eco-friendly travel by restoring existing classics and
+                                    minimizing our carbon footprint in every journey.</p>
+                            </div>
+                        </li>
+                        <li class="mb-4 d-flex flex-column align-items-center text-center flex-lg-row align-items-lg-start text-lg-start">
+                            <i class="bi bi-heart-fill text-primary mb-3 mb-lg-0 me-lg-3 fs-4"></i>
+                            <div>
+                                <h5 class="playfair">Personalized Experience</h5>
+                                <p class="text-muted">From itinerary planning to cozy interior setups, we ensure your
+                                    glamping experience is truly one of a kind.</p>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Restoration Showcase (Before/After Slider) -->
+    <section class="restoration-showcase">
+        <div class="container">
+            <div class="row align-items-center">
+                <div class="col-lg-5 mb-5 mb-lg-0 text-center text-lg-start">
+                    <h2 class="section-title">The Craft of Restoration</h2>
+                    <p class="lead mb-4">From rusted relics to rolling masterpieces.</p>
+                    <p class="text-muted mb-4">Our restoration process is a labor of love. We take neglected trailers
+                        and breathe new life into them, preserving history one rivet at a time.</p>
+                    <a href="restoration.html" class="btn btn-outline-primary hero-btn">View Our Process</a>
+                </div>
+                <div class="col-lg-7">
+                    <div class="ba-slider shadow-lg">
+                        <div class="ba-image ba-before"
+                            style="background-image: url('https://media.istockphoto.com/id/972417916/photo/restoration-of-an-old-coup%C3%A9-car.jpg?s=612x612&w=0&k=20&c=gXcfIpFGjaEglkiSfMamS_OCAQ9m8n3LdsoSscuMlGQ=');">
+                        </div>
+                        <div class="ba-image ba-after"
+                            style="background-image: url('https://images.unsplash.com/photo-1591278169757-deac26e49555?fm=jpg&q=60&w=3000&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8Y2FyJTIwcmVzdG9yYXRpb258ZW58MHx8MHx8fDA%3D');">
+                        </div>
+                        <div class="ba-handle">
+                            <i class="bi bi-arrows-expand"></i>
+                        </div>
+                    </div>
+                    <p class="text-center mt-3 text-muted small"><i class="bi bi-info-circle me-1"></i> Slide to see the
+                        transformation</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Banner -->
+    <section class="cta-banner py-5 bg-primary text-white text-center">
+        <div class="container">
+            <h2 class="playfair mb-3">Book Your Vintage Escape Today</h2>
+            <p class="lead mb-4">Limited availability for the upcoming summer season. Secure your spot now.</p>
+            <a href="booking.html" class="btn btn-light btn-lg text-primary">Check Availability</a>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-4 mb-4">
+                    <a href="index.html" class="text-decoration-none">
+                        <div class="playfair logo-text mb-4" style="color: var(--primary) !important;"><i
+                                class="bi bi-car-front-fill me-2"></i>Silver Studio</div>
+                    </a>
+                    <p class="text-accent mb-4">Nostalgic trailer rentals and master-class restoration. Your journey
+                        through history begins here.</p>
+                    <div class="d-flex gap-3">
+                        <a href="#"><i class="bi bi-facebook fs-5"></i></a>
+                        <a href="#"><i class="bi bi-instagram fs-5"></i></a>
+                        <a href="#"><i class="bi bi-pinterest fs-5"></i></a>
+                    </div>
+                </div>
+                <div class="col-lg-2 col-md-4 mb-4">
+                    <h6 class="text-white mb-3">Quick Links</h6>
+                    <ul class="list-unstyled">
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="trailers.html">Trailers</a></li>
+                        <li><a href="restoration.html">Restoration</a></li>
+                        <li><a href="gallery.html">Gallery</a></li>
+                    </ul>
+                </div>
+                <div class="col-lg-2 col-md-4 mb-4">
+                    <h6 class="text-white mb-3">Support</h6>
+                    <ul class="list-unstyled">
+                        <li><a href="contact.html">Contact Us</a></li>
+                        <li><a href="faq.html">FAQs</a></li>
+                        <li><a href="#">Privacy Policy</a></li>
+                        <li><a href="#">Terms of Service</a></li>
+                    </ul>
+                </div>
+                <div class="col-lg-4 col-md-4">
+                    <h6 class="text-white mb-3">Newsletter</h6>
+                    <p class="small text-accent mb-3">Subscribe for travel stories and restoration updates.</p>
+                    <form class="d-flex">
+                        <input type="email" class="form-control form-control-sm me-2" placeholder="Email Address">
+                        <button type="submit" class="btn btn-primary btn-sm">Join</button>
+                    </form>
+                </div>
+            </div>
+            <hr class="mt-5 bg-white">
+            <div class="text-center small text-accent mt-4">
+                &copy; 2026 Silver Studio. All rights reserved.
+            </div>
+        </div>
+        <button id="scrollToTop" class="btn btn-primary rounded-circle position-fixed shadow-lg"
+            style="bottom: 30px; right: 30px; display: none; z-index: 1050; width: 45px; height: 45px; align-items: center; justify-content: center; border:none; outline:none;"
+            onclick="window.scrollTo({top: 0, behavior: 'smooth'});">
+            <i class="bi bi-arrow-up"></i>
+        </button>
+    </footer>
+
+    <!-- Bootstrap JS Bundle -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <!-- Custom JS -->
+    <script src="js/main.js"></script>
+</body>
+
+</html>

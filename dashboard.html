@@ -1,0 +1,749 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Dashboard | Silver Studio</title>
+    <meta name="description" content="Manage your vintage trailer bookings and track your restoration progress.">
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Playfair+Display:ital,wght@0,400;0,700;1,400&display=swap"
+        rel="stylesheet">
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Bootstrap Icons -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="css/styles.css">
+    <link rel="icon" type="image/png" href="assets/favicon.png">
+    <script>
+        (function () {
+            const savedTheme = localStorage.getItem('theme');
+            if (savedTheme === 'dark') {
+                document.documentElement.setAttribute('data-theme', 'dark');
+                document.body?.setAttribute('data-theme', 'dark');
+            }
+        })();
+    </script>
+    <style>
+        :root {
+            --sidebar-width: 260px;
+        }
+
+        .dashboard-wrapper {
+            display: flex;
+            min-height: 100vh;
+        }
+
+        .sidebar {
+            width: var(--sidebar-width);
+            background: #fff;
+            border-right: 1px solid #eee;
+            padding-top: 2rem;
+            display: flex;
+            flex-direction: column;
+            transition: var(--transition);
+            height: 100vh;
+            position: sticky;
+            top: 0;
+        }
+
+        [data-theme="dark"] .sidebar {
+            background: var(--card-dark);
+            border-color: #333;
+        }
+
+        .main-content {
+            flex: 1;
+            padding: 2rem;
+            background: #f8f9fa;
+            transition: var(--transition);
+        }
+
+        [data-theme="dark"] .main-content {
+            background: #121212;
+        }
+
+        .nav-link-dash {
+            padding: 12px 24px;
+            color: #37474F;
+            display: flex;
+            align-items: center;
+            text-decoration: none;
+            transition: var(--transition);
+            border-left: 4px solid transparent;
+            cursor: pointer;
+        }
+
+        [data-theme="dark"] .nav-link-dash {
+            color: #FAF7F5;
+        }
+
+        .nav-link-dash:hover,
+        .nav-link-dash.active {
+            background: rgba(225, 27, 64, 0.05);
+            color: var(--primary);
+            border-left-color: var(--primary);
+        }
+
+        .nav-link-dash i {
+            margin-right: 15px;
+            font-size: 1.2rem;
+        }
+
+        .section-content {
+            display: none;
+        }
+
+        .section-content.active {
+            display: block;
+            animation: fadeIn 0.3s ease-in-out forwards;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(10px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .notification-badge {
+            position: absolute;
+            top: -5px;
+            right: -5px;
+            width: 18px;
+            height: 18px;
+            background: var(--primary);
+            color: white;
+            border-radius: 50%;
+            font-size: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border: 2px solid white;
+        }
+
+        [data-theme="dark"] .notification-badge {
+            border-color: var(--card-dark);
+        }
+
+        .table-responsive {
+            overflow-x: auto;
+            -webkit-overflow-scrolling: touch;
+        }
+
+        .table-responsive table {
+            min-width: 800px; /* Force minimum width to ensure scrollability on mobile */
+        }
+
+        @media (max-width: 768px) {
+            .table-responsive table {
+                min-width: 700px;
+            }
+        }
+
+        .progress {
+            height: 8px;
+            background-color: #eee;
+            border-radius: 10px;
+            overflow: hidden;
+        }
+
+        [data-theme="dark"] .progress {
+            background-color: #333;
+        }
+
+        .progress-bar {
+            background-color: var(--primary);
+        }
+
+        .wishlist-img {
+            width: 80px;
+            height: 60px;
+            object-fit: cover;
+            border-radius: 4px;
+        }
+
+        @media (max-width: 1024px) {
+            .sidebar {
+                position: fixed;
+                left: -100%;
+                z-index: 1000;
+                height: 100%;
+            }
+
+            .sidebar.show {
+                left: 0;
+            }
+
+            .main-content {
+                padding: 1.5rem 1rem;
+            }
+
+            /* Dashboard Header Dropdown (Absolute Overlay) */
+            .dash-mobile-nav {
+                display: none;
+                position: absolute;
+                top: 70px;
+                left: 0;
+                width: 100%;
+                background: #fff;
+                z-index: 1100;
+                box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+                border-bottom: 2px solid var(--primary);
+            }
+
+            [data-theme="dark"] .dash-mobile-nav {
+                background: var(--card-dark);
+                border-color: var(--primary);
+            }
+
+            .dash-mobile-nav.show {
+                display: block;
+            }
+
+            .dash-mobile-link {
+                padding: 1rem 1.5rem;
+                color: #37474F;
+                text-decoration: none;
+                display: flex;
+                align-items: center;
+                border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+            }
+
+            [data-theme="dark"] .dash-mobile-link {
+                color: #FAF7F5;
+                border-bottom-color: rgba(255, 255, 255, 0.05);
+            }
+
+            .dash-mobile-link.active {
+                color: var(--primary);
+                background: rgba(225, 27, 64, 0.05);
+                border-left: 4px solid var(--primary);
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="dashboard-wrapper">
+        <!-- Sidebar -->
+        <aside class="sidebar">
+            <div class="px-4 mb-4">
+                <a href="index.html" class="text-decoration-none">
+                    <div class="playfair logo-text text-primary fs-4">
+                        <i class="bi bi-car-front-fill me-2"></i>Silver Studio
+                    </div>
+                </a>
+            </div>
+
+            <div class="d-md-none text-end px-3 mb-3">
+                <button class="btn btn-sm btn-light" id="sidebarClose"><i class="bi bi-x-lg"></i></button>
+            </div>
+
+            <nav class="flex-grow-1">
+                <div class="nav-link-dash active" data-target="overview">
+                    <i class="bi bi-speedometer2"></i> Overview
+                </div>
+                <div class="nav-link-dash" data-target="fleet">
+                    <i class="bi bi-car-front"></i> Fleet Management
+                </div>
+                <div class="nav-link-dash" data-target="restoration">
+                    <i class="bi bi-tools"></i> Restoration Lab
+                </div>
+                <div class="nav-link-dash" data-target="wishlist">
+                    <i class="bi bi-heart"></i> The Wishlist
+                </div>
+                <div class="nav-link-dash" data-target="events">
+                    <i class="bi bi-calendar-event"></i> Event Concierge
+                </div>
+                <div class="nav-link-dash" data-target="contracts">
+                    <i class="bi bi-file-earmark-text"></i> Studio Contracts
+                </div>
+                <div class="nav-link-dash" data-target="settings">
+                    <i class="bi bi-gear"></i> Settings
+                </div>
+            </nav>
+
+            <div class="border-top mt-auto mb-3 pt-3">
+                <a href="login.html" class="nav-link-dash text-danger">
+                    <i class="bi bi-box-arrow-left"></i> Logout
+                </a>
+            </div>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="main-content">
+            <header class="d-flex flex-column mb-4 position-relative">
+                <!-- TOP ROW: Branding & Primary Toggle (Tablet/Mobile Only) -->
+                <div class="d-flex d-lg-none justify-content-between align-items-center w-100 mb-4 px-1">
+                    <a href="index.html" class="text-decoration-none">
+                        <div class="playfair logo-text text-primary fs-4">
+                            <i class="bi bi-car-front-fill me-1"></i>Silver Studio
+                        </div>
+                    </a>
+
+                    <!-- Mobile/Tablet Hamburger (Far Right) -->
+                    <div class="dashboard-hamburger ms-auto">
+                        <button class="btn btn-dark p-0" id="mobileDashToggle"
+                            style="width: 44px; height: 44px; display: flex; align-items: center; justify-content: center;">
+                            <i class="bi bi-list fs-1 text-primary"></i>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- NEW Mobile/Tablet Dropdown Menu (Absolute Overlay) -->
+                <div class="dash-mobile-nav d-lg-none" id="dashMobileDropdown">
+                    <div class="px-4 py-4 border-bottom d-flex align-items-center gap-3 mb-2 bg-light bg-opacity-10">
+                        <img src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=crop&w=128&h=128"
+                            class="rounded-circle shadow-sm border border-2 border-white" width="50" height="50"
+                            style="object-fit: cover;">
+                        <div>
+                            <h6 class="mb-0 fw-bold">John Doe</h6>
+                            <small class="text-muted" style="font-size: 11px;">Elite Collector Tier</small>
+                        </div>
+                    </div>
+                    <nav class="py-2">
+                        <a href="javascript:void(0)" class="dash-mobile-link active" data-target="overview">
+                            <i class="bi bi-speedometer2 me-3"></i> Overview
+                        </a>
+                        <a href="javascript:void(0)" class="dash-mobile-link" data-target="fleet">
+                            <i class="bi bi-car-front me-3"></i> Fleet Management
+                        </a>
+                        <a href="javascript:void(0)" class="dash-mobile-link" data-target="restoration">
+                            <i class="bi bi-tools me-3"></i> Restoration Lab
+                        </a>
+                        <a href="javascript:void(0)" class="dash-mobile-link" data-target="wishlist">
+                            <i class="bi bi-heart me-3"></i> The Wishlist
+                        </a>
+                        <a href="javascript:void(0)" class="dash-mobile-link" data-target="events">
+                            <i class="bi bi-calendar-event me-3"></i> Event Concierge
+                        </a>
+                        <a href="javascript:void(0)" class="dash-mobile-link" data-target="contracts">
+                            <i class="bi bi-file-earmark-text me-3"></i> Studio Contracts
+                        </a>
+                        <a href="javascript:void(0)" class="dash-mobile-link" data-target="settings">
+                            <i class="bi bi-gear me-3"></i> Settings
+                        </a>
+                    </nav>
+                </div>
+
+                <!-- MAIN ROW: Welcome Invitation & Alerts -->
+                <div class="d-flex align-items-center w-100" style="padding: 0 5px;">
+                    <div class="flex-grow-1">
+                        <h5 class="mb-0 playfair text-primary fs-5 fs-lg-4">Welcome Back, Collector</h5>
+                    </div>
+                    <div class="ms-auto d-flex align-items-center gap-2">
+                        <!-- Theme Toggles (Desktop Only) -->
+                        <div class="d-none d-lg-flex align-items-center gap-2 me-2">
+                            <button id="theme-toggle" class="theme-toggle border-0 bg-transparent text-muted"
+                                title="Toggle Theme" style="width:35px;height:35px;border-radius:50%;">
+                                <i class="bi bi-moon fs-5"></i>
+                            </button>
+                            <button id="rtl-toggle" class="rtl-toggle border-0 bg-transparent text-muted"
+                                title="Toggle RTL" style="width:35px;height:35px;border-radius:50%;">
+                                <i class="bi bi-translate fs-5"></i>
+                            </button>
+                        </div>
+
+                        <!-- Notification Bell (Always Visible Right Corner) -->
+                        <div class="position-relative cursor-pointer" title="Notifications">
+                            <i class="bi bi-bell-fill fs-5 text-muted"></i>
+                            <span class="notification-badge" style="right: -4px; top: -4px;">3</span>
+                        </div>
+
+                        <!-- User Profile (Desktop Only) -->
+                        <div class="dropdown d-none d-lg-flex align-items-center ms-2">
+                            <a href="#" class="d-flex align-items-center text-decoration-none text-dark dropdown-toggle"
+                                data-bs-toggle="dropdown">
+                                <img src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=crop&w=128&h=128"
+                                    class="rounded-circle shadow-sm border border-2 border-primary me-2" width="32"
+                                    height="32" style="object-fit: cover;">
+                                <span class="d-none d-lg-inline text-primary fs-6">John Doe</span>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </header>
+
+            <!-- Overview Section -->
+            <div id="overview" class="section-content active">
+                <div class="row g-4 mb-4">
+                    <div class="col-md-4">
+                        <div class="card border-0 shadow-sm p-4 text-center h-100">
+                            <h6 class="text-muted small text-uppercase mb-2 tracking-widest fw-bold">Active Bookings
+                            </h6>
+                            <h2 class="playfair mb-0 text-primary">02</h2>
+                            <p class="small text-muted mt-2 mb-0">Across 12 days this month</p>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="card border-0 shadow-sm p-4 text-center h-100">
+                            <h6 class="text-muted small text-uppercase mb-2 tracking-widest fw-bold">Lab Progress</h6>
+                            <h2 class="playfair mb-0">78%</h2>
+                            <p class="small text-muted mt-2 mb-0">1957 Roadster Overhaul</p>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="card border-0 shadow-sm p-4 text-center h-100">
+                            <h6 class="text-muted small text-uppercase mb-2 tracking-widest fw-bold">Studio Points</h6>
+                            <h2 class="playfair mb-0">2,450</h2>
+                            <p class="small text-muted mt-2 mb-0">Elite Collector Tier</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="card border-0 shadow-sm p-4">
+                    <h5 class="playfair mb-4 text-primary">Recent Studio Activity</h5>
+                    <div class="list-group list-group-flush border-0">
+                        <div
+                            class="list-group-item bg-transparent px-0 py-3 d-flex justify-content-between align-items-center">
+                            <div>
+                                <h6 class="mb-1">Fleet Inquiry Approved</h6>
+                                <p class="small text-muted mb-0">Your request for "The Rosso Legend" has been cleared
+                                    for June 12-15.</p>
+                            </div>
+                            <span class="badge bg-light text-muted fw-normal">2h ago</span>
+                        </div>
+                        <div
+                            class="list-group-item bg-transparent px-0 py-3 d-flex justify-content-between align-items-center">
+                            <div>
+                                <h6 class="mb-1">Restoration Milestone</h6>
+                                <p class="small text-muted mb-0">Engine block installation completed on the '57 Roadster
+                                    project.</p>
+                            </div>
+                            <span class="badge bg-light text-muted fw-normal">Yesterday</span>
+                        </div>
+                        <div
+                            class="list-group-item bg-transparent px-0 py-3 d-flex justify-content-between align-items-center border-0">
+                            <div>
+                                <h6 class="mb-1">Gala Invitation</h6>
+                                <p class="small text-muted mb-0">Official invite for the "Curators of Chrome" annual
+                                    event in London.</p>
+                            </div>
+                            <span class="badge bg-light text-muted fw-normal">3 days ago</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Fleet Management -->
+            <div id="fleet" class="section-content">
+                <h5 class="playfair mb-4 text-primary">My Collections History</h5>
+                <div class="card border-0 shadow-sm p-4">
+                    <div class="table-responsive">
+                        <table class="table table-sm align-middle text-nowrap">
+                            <thead>
+                                <tr class="text-muted small text-uppercase tracking-wider border-0">
+                                    <th>Vehicle Asset</th>
+                                    <th>Service Window</th>
+                                    <th>Total Tier Investment</th>
+                                    <th>Status Palette</th>
+                                    <th class="text-end">Curator Tools</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>
+                                        <div class="d-flex align-items-center gap-3">
+                                            <img src="https://trinityrental.com/_next/image?url=https%3A%2F%2Fstorage.googleapis.com%2Ftrinityrental-e51d5.appspot.com%2Fmedium_IMG_6954_7d61d350b1%2Fmedium_IMG_6954_7d61d350b1.webp&w=3840&q=75"
+                                                class="rounded shadow-sm" width="60" height="40"
+                                                style="object-fit: cover;">
+                                            <span class="fw-bold">The Rosso Legend</span>
+                                        </div>
+                                    </td>
+                                    <td class="small text-muted">June 12 - June 15, 2026</td>
+                                    <td class="fw-bold text-primary">$2,400.00</td>
+                                    <td><span
+                                            class="badge bg-success-subtle text-success border border-success">Upcoming</span>
+                                    </td>
+                                    <td class="text-end">
+                                        <button class="btn btn-sm btn-outline-primary rounded-pill px-3">Adjust
+                                            Booking</button>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <div class="d-flex align-items-center gap-3">
+                                            <img src="https://images.unsplash.com/photo-1614200187524-dc4b892acf16?auto=format&fit=crop&w=600"
+                                                class="rounded shadow-sm" width="60" height="40"
+                                                style="object-fit: cover;">
+                                            <span class="fw-bold">The Stealth GT</span>
+                                        </div>
+                                    </td>
+                                    <td class="small text-muted">March 10 - March 12, 2026</td>
+                                    <td class="fw-bold text-muted">$1,100.00</td>
+                                    <td><span
+                                            class="badge bg-secondary-subtle text-secondary border border-secondary">Completed</span>
+                                    </td>
+                                    <td class="text-end">
+                                        <button class="btn btn-sm btn-outline-secondary rounded-pill px-3">Post-Service
+                                            Review</button>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Restoration Lab -->
+            <div id="restoration" class="section-content">
+                <h5 class="playfair mb-4 text-primary">Active Restoration Projects</h5>
+                <div class="card border-0 shadow-sm p-4">
+                    <div class="table-responsive">
+                        <table class="table table-sm align-middle text-nowrap">
+                            <thead>
+                                <tr class="text-muted small text-uppercase tracking-wider">
+                                    <th>Lab Asset</th>
+                                    <th>Engineering Status</th>
+                                    <th>Timeline Phase</th>
+                                    <th class="text-end">Restoration Hub</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>
+                                        <div class="d-flex align-items-center gap-3">
+                                            <div class="bg-primary text-white rounded p-2 text-center"
+                                                style="width: 40px; height: 40px;">
+                                                <i class="bi bi-tools fs-5"></i>
+                                            </div>
+                                            <div>
+                                                <span class="fw-bold d-block">1957 Roadster 'Iron Heart'</span>
+                                                <small class="text-muted">Master Build #572</small>
+                                            </div>
+                                        </div>
+                                    </td>
+                                    <td style="min-width: 180px;">
+                                        <div class="progress" style="height: 6px;">
+                                            <div class="progress-bar bg-primary" style="width: 78%"></div>
+                                        </div>
+                                        <small class="text-muted mt-1 d-block">78% Progress Calibrated</small>
+                                    </td>
+                                    <td>
+                                        <div class="d-flex gap-2">
+                                            <i class="bi bi-check-circle-fill text-success small"
+                                                title="Chassis Integrity Verified"></i>
+                                            <i class="bi bi-check-circle-fill text-success small"
+                                                title="Drivetrain Calibrated"></i>
+                                            <i class="bi bi-hourglass-split text-warning small"
+                                                title="Precision Paint in Progress"></i>
+                                            <span
+                                                class="badge bg-primary-subtle text-primary border border-primary ms-2">Phase:
+                                                Aesthetic Refinement</span>
+                                        </div>
+                                    </td>
+                                    <td class="text-end">
+                                        <button class="btn btn-sm btn-dark rounded-pill px-3">Review Specs</button>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+                <div class="text-center py-5">
+                    <button class="btn btn-primary rounded-pill px-5">Initiate New Restoration Pipeline</button>
+                </div>
+            </div>
+
+            <!-- The Wishlist -->
+            <div id="wishlist" class="section-content">
+                <h5 class="playfair mb-4 text-primary">Curated Masterpieces</h5>
+                <div class="card border-0 shadow-sm p-4">
+                    <div class="table-responsive">
+                        <table class="table table-sm align-middle text-nowrap">
+                            <thead>
+                                <tr class="small text-muted text-uppercase tracking-wider">
+                                    <th>Prototype Preview</th>
+                                    <th>Model Genealogy</th>
+                                    <th>Session Investment</th>
+                                    <th>Current Asset Availability</th>
+                                    <th class="text-end">Selection Protocol</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td><img src="https://images.unsplash.com/photo-1583121274602-3e2820c69888?auto=format&fit=crop&w=600"
+                                            class="wishlist-img shadow-sm" alt="Track Special"></td>
+                                    <td class="fw-bold">The Track Special</td>
+                                    <td class="text-primary fw-bold fs-6">$650</td>
+                                    <td>
+                                        <div class="d-flex align-items-center gap-2">
+                                            <span class="text-success small"><i class="bi bi-circle-fill me-1"
+                                                    style="font-size: 8px;"></i> Available</span>
+                                            <span class="badge bg-success-subtle text-success small">Prime
+                                                Condition</span>
+                                        </div>
+                                    </td>
+                                    <td class="text-end"><button
+                                            class="btn btn-sm btn-outline-primary rounded-pill">Reserve Now</button>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td><img src="https://images.unsplash.com/photo-1503376760367-e9a82cdcb813?auto=format&fit=crop&w=600"
+                                            class="wishlist-img shadow-sm" alt="Classic Icon"></td>
+                                    <td class="fw-bold">Airstream '64 Revival</td>
+                                    <td class="text-primary fw-bold fs-6">$450</td>
+                                    <td>
+                                        <div class="d-flex align-items-center gap-2">
+                                            <span class="text-warning small"><i class="bi bi-circle-fill me-1"
+                                                    style="font-size: 8px;"></i> Pipeline: Aug '26</span>
+                                            <span class="badge bg-warning-subtle text-warning small">In
+                                                Restoration</span>
+                                        </div>
+                                    </td>
+                                    <td class="text-end"><button
+                                            class="btn btn-sm btn-outline-secondary rounded-pill">Track
+                                            Progress</button>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Event Concierge -->
+            <div id="events" class="section-content">
+                <h5 class="playfair mb-4 text-primary">Elite Event Services</h5>
+                <div class="card border-0 shadow-sm p-4 bg-dark text-white text-center position-relative overflow-hidden"
+                    style="min-height: 250px;">
+                    <div class="position-absolute top-0 start-0 w-100 h-100"
+                        style="background: url('https://images.unsplash.com/photo-1492684223066-81342ee5ff30?auto=format&fit=crop&w=1200') center; background-size: cover; opacity: 0.3; z-index: 1;">
+                    </div>
+                    <div class="position-relative" style="z-index: 2;">
+                        <h2 class="playfair mb-3">Annual Curators Gala</h2>
+                        <p class="mb-4">London | September 14, 2026</p>
+                        <p class="small text-accent mx-auto mb-4" style="max-width: 400px;">An exclusive evening for
+                            Silver Studio collectors and automotive aficionados. Private unveilings and world-class
+                            networking.</p>
+                        <button class="btn btn-primary px-4 py-2">Confirm Attendance</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Studio Contracts -->
+            <div id="contracts" class="section-content">
+                <h5 class="playfair mb-4 text-primary">Studio Legal Documents</h5>
+                <div class="row g-3">
+                    <div class="col-md-6 col-lg-4">
+                        <div class="card border-0 shadow-sm p-4 text-center">
+                            <i class="bi bi-file-pdf fs-1 text-danger mb-3"></i>
+                            <h6 class="mb-1">Rental Agreement</h6>
+                            <p class="small text-muted mb-3">#RA-44299 - Stealth GT</p>
+                            <button class="btn btn-sm btn-outline-primary w-100"><i class="bi bi-download me-2"></i>
+                                Download</button>
+                        </div>
+                    </div>
+                    <div class="col-md-6 col-lg-4">
+                        <div class="card border-0 shadow-sm p-4 text-center">
+                            <i class="bi bi-file-pdf fs-1 text-danger mb-3"></i>
+                            <h6 class="mb-1">Restoration Master Plan</h6>
+                            <p class="small text-muted mb-3">Project: 'Iron Heart'</p>
+                            <button class="btn btn-sm btn-outline-primary w-100"><i class="bi bi-download me-2"></i>
+                                Download</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Settings -->
+            <div id="settings" class="section-content">
+                <div class="card border-0 shadow-sm p-4">
+                    <h5 class="playfair text-primary mb-4">Studio Settings</h5>
+                    <form>
+                        <div class="row g-3">
+                            <div class="col-md-6">
+                                <label class="form-label small fw-bold text-muted">Display Name</label>
+                                <input type="text" class="form-control bg-light border-0" value="John Doe">
+                            </div>
+                            <div class="col-md-6">
+                                <label class="form-label small fw-bold text-muted">Studio Tier</label>
+                                <input type="text" class="form-control bg-light border-0" value="Elite Collector"
+                                    readonly>
+                            </div>
+                            <div class="col-md-6 mt-4">
+                                <h6 class="small fw-bold text-muted text-uppercase mb-3">Notification Preferences</h6>
+                                <div class="form-check form-switch mb-3">
+                                    <input class="form-check-input" type="checkbox" checked>
+                                    <label class="form-check-label small text-muted">Weekly Studio Curations</label>
+                                </div>
+                                <div class="form-check form-switch">
+                                    <input class="form-check-input" type="checkbox" checked>
+                                    <label class="form-check-label small text-muted">Real-time Lab Updates</label>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="mt-4 pt-3 border-top">
+                            <button type="submit" class="btn btn-primary px-4">Save Changes</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <!-- Main JS -->
+    <script src="js/main.js"></script>
+    <script>
+        // Dashboard Content Switching & Responsive Navigation
+        const dashDropdown = document.getElementById('dashMobileDropdown');
+        const dashToggle = document.getElementById('mobileDashToggle');
+        const navLinks = document.querySelectorAll('.nav-link-dash[data-target], .dash-mobile-link[data-target]');
+        const sections = document.querySelectorAll('.section-content');
+
+        // Mobile Toggle Logic
+        if (dashToggle) {
+            dashToggle.onclick = (e) => {
+                e.stopPropagation();
+                dashDropdown.classList.toggle('show');
+            };
+        }
+
+        // Close dropdown when clicking outside
+        window.onclick = (event) => {
+            if (dashDropdown && dashDropdown.classList.contains('show')) {
+                if (!event.target.closest('#mobileDashToggle') && !event.target.closest('#dashMobileDropdown')) {
+                    dashDropdown.classList.remove('show');
+                }
+            }
+        };
+
+        // Section Switching Engine
+        navLinks.forEach(link => {
+            link.addEventListener('click', () => {
+                const targetId = link.getAttribute('data-target');
+
+                // Update active states in BOTH menus
+                navLinks.forEach(l => l.classList.remove('active'));
+                document.querySelectorAll(`[data-target="${targetId}"]`).forEach(el => el.classList.add('active'));
+
+                // Switch and animate visible section
+                sections.forEach(sec => sec.classList.remove('active'));
+                const targetSec = document.getElementById(targetId);
+                if (targetSec) {
+                    targetSec.classList.add('active');
+                }
+
+                // Automatic close mobile menu after selection
+                if (dashDropdown) {
+                    dashDropdown.classList.remove('show');
+                }
+            });
+        });
+    </script>
+    <!-- Bootstrap JS Bundle -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+
+</html>

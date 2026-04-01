@@ -1,0 +1,743 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Console | Silver Studio</title>
+    <meta name="description" content="Administrative portal for Silver Studio fleet and booking management.">
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Hanken+Grotesk:wght@400;500;600&family=Jost:wght@400;500;600;700&display=swap"
+        rel="stylesheet">
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Bootstrap Icons -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="css/styles.css">
+    <link rel="icon" type="image/png" href="assets/favicon.png">
+    <script>
+        (function () {
+            const savedTheme = localStorage.getItem('theme');
+            if (savedTheme === 'dark') {
+                document.documentElement.setAttribute('data-theme', 'dark');
+                document.body?.setAttribute('data-theme', 'dark');
+            }
+        })();
+    </script>
+    <style>
+        :root {
+            --sidebar-width: 280px;
+            --admin-accent: #4A5568;
+            /* Slate for Admin identity */
+        }
+
+        body {
+            background-color: #f8f9fa;
+            overflow-x: hidden;
+            font-family: 'Hanken Grotesk', sans-serif;
+        }
+
+        body[data-theme="dark"] {
+            background-color: var(--bg-dark);
+        }
+
+        .admin-layout {
+            display: flex;
+            min-height: 100vh;
+        }
+
+        .sidebar {
+            width: var(--sidebar-width);
+            background: #1a202c;
+            color: #fff;
+            display: flex;
+            flex-direction: column;
+            transition: var(--transition);
+            z-index: 1001;
+        }
+
+        [data-theme="dark"] .sidebar {
+            background: #0d1117;
+        }
+
+        .main-content {
+            flex: 1;
+            padding: 2rem;
+            transition: var(--transition);
+        }
+
+        .nav-link-admin {
+            padding: 1rem 1.5rem;
+            color: rgba(255, 255, 255, 0.7);
+            display: flex;
+            align-items: center;
+            text-decoration: none;
+            transition: var(--transition);
+            border-left: 4px solid transparent;
+            cursor: pointer;
+        }
+
+        .nav-link-admin:hover,
+        .nav-link-admin.active {
+            color: #fff;
+            background: rgba(255, 255, 255, 0.05);
+            border-left-color: var(--primary);
+        }
+
+        .section-content {
+            display: none;
+            animation: fadeIn 0.4s ease forwards;
+        }
+
+        .section-content.active {
+            display: block;
+            opacity: 1;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(10px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+
+        .card {
+            border: none;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+            border-radius: 12px;
+        }
+
+        [data-theme="dark"] .card {
+            background-color: var(--card-dark);
+        }
+
+        @media (max-width: 992px) {
+            .sidebar {
+                position: fixed;
+                left: -280px;
+                z-index: 1060;
+                height: 100vh;
+                transition: all 0.3s ease;
+                box-shadow: 10px 0 30px rgba(0, 0, 0, 0.1);
+            }
+
+            .sidebar.show {
+                left: 0;
+            }
+
+            .sidebar-overlay {
+                position: fixed;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100%;
+                background: rgba(0, 0, 0, 0.5);
+                backdrop-filter: blur(4px);
+                z-index: 1055;
+                display: none;
+                opacity: 0;
+                transition: opacity 0.3s ease;
+            }
+
+            .sidebar-overlay.show {
+                display: block;
+                opacity: 1;
+            }
+
+            /* Admin Header Dropdown (Absolute Overlay) */
+            .admin-mobile-nav {
+                display: none;
+                position: absolute;
+                /* Set back to absolute to overlap rather than push */
+                top: 70px;
+                /* Offset to start below branding row */
+                left: 0;
+                width: 100%;
+                background: #1a202c;
+                z-index: 1100;
+                box-shadow: 0 15px 30px rgba(0, 0, 0, 0.4);
+                border-bottom: 2px solid var(--primary);
+            }
+
+            [data-theme="dark"] .admin-mobile-nav {
+                background: #0d1117;
+            }
+
+            .admin-mobile-nav.show {
+                display: block;
+            }
+
+            .admin-mobile-link {
+                padding: 1.25rem 2rem;
+                color: rgba(255, 255, 255, 0.7);
+                text-decoration: none;
+                display: flex;
+                align-items: center;
+                border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+            }
+
+            .admin-mobile-link.active {
+                color: #fff;
+                background: rgba(255, 255, 255, 0.1);
+                border-left: 4px solid var(--primary);
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+
+    <div class="sidebar-overlay" id="sidebarOverlay"></div>
+
+    <div class="admin-layout">
+        <!-- Sidebar -->
+        <aside class="sidebar" id="adminSidebar">
+            <div class="p-4 mb-4">
+                <a href="index.html" class="text-decoration-none text-primary">
+                    <div class="playfair logo-text">
+                        <i class="bi bi-car-front-fill text-primary me-2"></i>Silver Studio
+                    </div>
+                </a>
+                <p class="small text-muted mb-0 mt-2">Management Console</p>
+            </div>
+
+            <nav class="flex-grow-1">
+                <div class="nav-link-admin active" onclick="showSection('analytics')">
+                    <i class="bi bi-columns-gap me-3"></i> Analytics Overlook
+                </div>
+                <div class="nav-link-admin" onclick="showSection('fleet')">
+                    <i class="bi bi-truck me-3"></i> Fleet Manager
+                </div>
+                <div class="nav-link-admin" onclick="showSection('bookings')">
+                    <i class="bi bi-calendar-range me-3"></i> Booking Registry
+                </div>
+                <div class="nav-link-admin" onclick="showSection('restorations')">
+                    <i class="bi bi-tools me-3"></i> Lab Pipeline
+                </div>
+                <div class="nav-link-admin" onclick="showSection('clients')">
+                    <i class="bi bi-people me-3"></i> Client Directory
+                </div>
+                <div class="nav-link-admin" onclick="showSection('settings')">
+                    <i class="bi bi-gear me-3"></i> Console Settings
+                </div>
+            </nav>
+
+            <div class="p-4 border-top border-secondary">
+                <a href="login.html" class="nav-link-admin text-danger border-0 p-0">
+                    <i class="bi bi-box-arrow-left me-3"></i> Sign Out
+                </a>
+            </div>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="main-content">
+            <header class="d-flex flex-column mb-4 mb-lg-5 position-relative">
+                <!-- TOP ROW: Branding & Primary Toggle (Mobile Only) -->
+                <div class="d-flex d-lg-none justify-content-between align-items-center w-100 mb-4 px-1">
+                    <a href="index.html" class="text-decoration-none">
+                        <div class="playfair logo-text text-primary fs-4">
+                            <i class="bi bi-car-front-fill me-1"></i>Silver Studio
+                        </div>
+                    </a>
+
+                    <!-- Mobile Hamburger (Far Right) -->
+                    <div class="dashboard-hamburger ms-auto">
+                        <button class="btn btn-dark p-0" id="mobileNavToggle"
+                            style="width: 44px; height: 44px; display: flex; align-items: center; justify-content: center;">
+                            <i class="bi bi-list fs-1 text-primary"></i>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- NEW Mobile Dropdown Menu (Moved above management overview) -->
+                <div class="admin-mobile-nav d-lg-none" id="adminMobileDropdown">
+                    <div class="px-4 py-4 border-bottom d-flex align-items-center gap-3 mb-2 bg-light bg-opacity-10">
+                        <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=128&h=128"
+                            class="rounded-circle shadow-sm border border-2 border-white" width="50" height="50"
+                            style="object-fit: cover;">
+                        <div>
+                            <h6 class="mb-0 fw-bold text-white">Admin User</h6>
+                            <small class="text-white text-opacity-50" style="font-size: 11px;">Master Access (Silver
+                                Studio)</small>
+                        </div>
+                    </div>
+                    <nav class="py-2">
+                        <a href="javascript:void(0)" class="admin-mobile-link active"
+                            onclick="showSection('analytics')">
+                            <i class="bi bi-columns-gap me-3"></i> Analytics Overlook
+                        </a>
+                        <a href="javascript:void(0)" class="admin-mobile-link" onclick="showSection('fleet')">
+                            <i class="bi bi-truck me-3"></i> Fleet Manager
+                        </a>
+                        <a href="javascript:void(0)" class="admin-mobile-link" onclick="showSection('bookings')">
+                            <i class="bi bi-calendar-range me-3"></i> Booking Registry
+                        </a>
+                        <a href="javascript:void(0)" class="admin-mobile-link" onclick="showSection('restorations')">
+                            <i class="bi bi-tools me-3"></i> Lab Pipeline
+                        </a>
+                        <a href="javascript:void(0)" class="admin-mobile-link" onclick="showSection('clients')">
+                            <i class="bi bi-people me-3"></i> Client Directory
+                        </a>
+                        <a href="javascript:void(0)" class="admin-mobile-link" onclick="showSection('settings')">
+                            <i class="bi bi-gear me-3"></i> Console Settings
+                        </a>
+                    </nav>
+                </div>
+
+                <!-- MAIN ROW: Title, Notifications & Profile (Title on line 2 mobile, single row desktop) -->
+                <div class="d-flex justify-content-between align-items-center w-100">
+                    <div class="d-flex align-items-center">
+                        <h2 class="jost fw-bold mb-0 fs-4 fs-lg-2">Management Overview</h2>
+                    </div>
+
+                    <!-- Right Section: Bell & Profile (Far Right Corner) -->
+                    <div class="d-flex align-items-center gap-3 gap-sm-3 ms-auto">
+                        <!-- Notification Bell (Always Visible next to Avatar) -->
+                        <div class="position-relative cursor-pointer me-1" title="Notifications">
+                            <i class="bi bi-bell-fill fs-4 fs-lg-5 text-muted"></i>
+                            <span
+                                class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-primary"
+                                style="font-size: 0.6rem; padding: 0.35em 0.5em;">3</span>
+                        </div>
+
+                        <!-- Theme Tools (Desktop Only) -->
+                        <div class="d-none d-lg-flex align-items-center gap-2 me-2">
+                            <button id="theme-toggle"
+                                class="theme-toggle border-0 bg-transparent text-muted transition-hover"
+                                title="Toggle Theme" style="width:40px;height:40px;border-radius:50%;">
+                                <i class="bi bi-moon fs-5"></i>
+                            </button>
+                            <button id="rtl-toggle"
+                                class="rtl-toggle border-0 bg-transparent text-muted transition-hover"
+                                title="Toggle RTL" style="width:40px;height:40px;border-radius:50%;">
+                                <i class="bi bi-translate fs-5"></i>
+                            </button>
+                        </div>
+
+                        <!-- Admin Profile Info (Desktop text info) -->
+                        <div class="d-none d-lg-flex align-items-center gap-2">
+                            <div class="text-end">
+                                <h6 class="mb-0 small fw-bold">Admin User</h6>
+                                <small class="text-muted" style="font-size: 10px;">Master Access</small>
+                            </div>
+                        </div>
+
+                        <!-- Admin Profile Image (Desktop Only) -->
+                        <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=128&h=128"
+                            class="rounded-circle shadow-sm border border-2 border-primary d-none d-lg-block" width="36"
+                            height="36" style="object-fit: cover;">
+                    </div>
+                </div>
+
+
+            </header>
+
+            <!-- Analytics Section -->
+            <section id="analytics" class="section-content active">
+                <div class="row g-4 mb-5">
+                    <div class="col-md-3">
+                        <div class="card p-4 h-100">
+                            <h6 class="small text-muted text-uppercase fw-bold mb-3">Total Fleet Revenue</h6>
+                            <h2 class="jost fw-bold mb-1">$52,380</h2>
+                            <small class="text-success mt-auto"><i class="bi bi-arrow-up"></i> 12% this month</small>
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="card p-4 h-100">
+                            <h6 class="small text-muted text-uppercase fw-bold mb-3">Active Rentals</h6>
+                            <h2 class="jost fw-bold mb-1">11 Units</h2>
+                            <small class="text-muted mt-auto">7 available in yard</small>
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="card p-4 h-100">
+                            <h6 class="small text-muted text-uppercase fw-bold mb-3">Restoration Projects</h6>
+                            <h2 class="jost fw-bold mb-1">5 Work Orders</h2>
+                            <small class="text-warning mt-auto">2 near completion</small>
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="card p-4 h-100">
+                            <h6 class="small text-muted text-uppercase fw-bold mb-3">New Registrations</h6>
+                            <h2 class="jost fw-bold mb-1">24 Clients</h2>
+                            <small class="text-success mt-auto"><i class="bi bi-arrow-up"></i> 8% growth</small>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row g-4">
+                    <div class="col-lg-8">
+                        <div class="card p-4">
+                            <div class="d-flex justify-content-between align-items-center mb-4">
+                                <h5 class="jost fw-bold mb-0">Live Fleet Performance</h5>
+                                <button class="btn btn-sm btn-outline-dark">Full Report</button>
+                            </div>
+                            <img src="fleet_analytics_dashboard_1775040555931.png" class="img-fluid rounded mb-3"
+                                style="object-fit: cover;">
+                            <p class="small text-muted">Fleet utilization remains high at 78% for the spring season.</p>
+                        </div>
+                    </div>
+                    <div class="col-lg-4">
+                        <div class="card p-4 h-100">
+                            <h5 class="jost fw-bold mb-4">Recent Bookings</h5>
+                            <div class="d-flex gap-3 mb-3 border-bottom pb-3">
+                                <div class="bg-light p-2 rounded jost fw-bold text-center" style="width: 50px;">
+                                    31<br><small>MAR</small></div>
+                                <div>
+                                    <h6 class="mb-0 small fw-bold">Silver Lining '64</h6>
+                                    <p class="small text-muted mb-0">Booking #29402 - J. Doe</p>
+                                </div>
+                            </div>
+                            <div class="d-flex gap-3 mb-3 border-bottom pb-3">
+                                <div class="bg-light p-2 rounded jost fw-bold text-center" style="width: 50px;">
+                                    02<br><small>APR</small></div>
+                                <div>
+                                    <h6 class="mb-0 small fw-bold">Aluminum Icon '59</h6>
+                                    <p class="small text-muted mb-0">Booking #29415 - R. Smith</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Other placeholders for switching -->
+            <section id="fleet" class="section-content py-4">
+                <div class="d-flex justify-content-between align-items-center mb-4">
+                    <h4 class="jost fw-bold mb-0">Fleet Management</h4>
+                    <button class="btn btn-primary"><i class="bi bi-plus-lg me-2"></i>Add Vehicle</button>
+                </div>
+                <div class="card p-4">
+                    <div class="table-responsive">
+                        <table class="table table-sm align-middle">
+                            <thead>
+                                <tr class="text-muted small text-uppercase">
+                                    <th>Vehicle</th>
+                                    <th>Status</th>
+                                    <th>License Plate</th>
+                                    <th>Current Location</th>
+                                    <th>Actions</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>
+                                        <div class="d-flex align-items-center">
+                                            <img src="https://dynamic-media-cdn.tripadvisor.com/media/photo-o/0a/08/c5/11/ferrari-tour-in-rome.jpg?w=900&h=500&s=1"
+                                                class="rounded me-3" width="60" height="40" style="object-fit:cover;">
+                                            <div>
+                                                <h6 class="mb-0 fw-bold">Porsche 911 Carrera</h6>
+                                                <small class="text-muted">2023 Model</small>
+                                            </div>
+                                        </div>
+                                    </td>
+                                    <td><span
+                                            class="badge bg-success-subtle text-success border border-success">Available</span>
+                                    </td>
+                                    <td>VIN-99482</td>
+                                    <td>Main Depot</td>
+                                    <td>
+                                        <button class="btn btn-sm btn-outline-dark"><i
+                                                class="bi bi-pencil"></i></button>
+                                        <button class="btn btn-sm btn-outline-danger"><i
+                                                class="bi bi-trash"></i></button>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <div class="d-flex align-items-center">
+                                            <img src="https://images.unsplash.com/photo-1549317661-bd32c8ce0db2?auto=format&fit=crop&w=600"
+                                                class="rounded me-3" width="60" height="40" style="object-fit:cover;">
+                                            <div>
+                                                <h6 class="mb-0 fw-bold">Range Rover Sport</h6>
+                                                <small class="text-muted">2024 Model</small>
+                                            </div>
+                                        </div>
+                                    </td>
+                                    <td><span class="badge bg-warning-subtle text-warning border border-warning">On
+                                            Rent</span></td>
+                                    <td>VIN-77321</td>
+                                    <td>Client - Downtown</td>
+                                    <td>
+                                        <button class="btn btn-sm btn-outline-dark"><i
+                                                class="bi bi-pencil"></i></button>
+                                        <button class="btn btn-sm btn-outline-danger"><i
+                                                class="bi bi-trash"></i></button>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </section>
+
+            <section id="bookings" class="section-content py-4">
+                <h4 class="jost fw-bold mb-4">Booking Registry</h4>
+                <div class="row g-4">
+                    <div class="col-md-6">
+                        <div class="card p-4 border-start border-4 border-primary">
+                            <div class="d-flex justify-content-between mb-3">
+                                <div class="d-flex align-items-center gap-3">
+                                    <img src="https://images.unsplash.com/photo-1503376760367-e9a82cdcb813?auto=format&fit=crop&w=80&h=80"
+                                        class="rounded shadow-sm" style="object-fit: cover;">
+                                    <div>
+                                        <h6 class="mb-1 fw-bold">Booking #29402</h6>
+                                        <p class="small text-muted mb-0">Client: Michael Rossi</p>
+                                    </div>
+                                </div>
+                                <span class="badge bg-primary text-white h-100">Confirmed</span>
+                            </div>
+                            <div class="d-flex align-items-center mb-3">
+                                <i class="bi bi-calendar-event text-primary me-2"></i>
+                                <span class="small">Oct 15 - Oct 20, 2026</span>
+                            </div>
+                            <p class="small mb-0"><strong>Vehicle:</strong> Porsche 911 Carrera</p>
+                            <p class="small mb-0"><strong>Total:</strong> $900.00</p>
+                            <div class="mt-3 pt-3 border-top text-end">
+                                <button class="btn btn-sm btn-outline-dark">View Details</button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="card p-4 border-start border-4 border-warning">
+                            <div class="d-flex justify-content-between mb-3">
+                                <div class="d-flex align-items-center gap-3">
+                                    <img src="https://images.unsplash.com/photo-1549317661-bd32c8ce0db2?auto=format&fit=crop&w=80&h=80"
+                                        class="rounded shadow-sm" style="object-fit: cover;">
+                                    <div>
+                                        <h6 class="mb-1 fw-bold">Booking #29403</h6>
+                                        <p class="small text-muted mb-0">Client: Sarah Jenkins</p>
+                                    </div>
+                                </div>
+                                <span class="badge bg-warning text-dark h-100">Pending</span>
+                            </div>
+                            <div class="d-flex align-items-center mb-3">
+                                <i class="bi bi-calendar-event text-primary me-2"></i>
+                                <span class="small">Nov 02 - Nov 05, 2026</span>
+                            </div>
+                            <p class="small mb-0"><strong>Vehicle:</strong> Range Rover Sport</p>
+                            <p class="small mb-0"><strong>Total:</strong> $450.00</p>
+                            <div class="mt-3 pt-3 border-top text-end">
+                                <button class="btn btn-sm btn-success me-2">Approve</button>
+                                <button class="btn btn-sm btn-outline-danger">Decline</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section id="restorations" class="section-content py-4">
+                <div class="d-flex justify-content-between align-items-center mb-4">
+                    <h4 class="jost fw-bold mb-0">Restoration Lab Pipeline</h4>
+                    <button class="btn btn-dark">New Project</button>
+                </div>
+                <div class="row g-0">
+                    <div class="col-md-4">
+                        <img src="https://images.unsplash.com/photo-1541899481282-d53bffe3c35d?auto=format&fit=crop&w=800&h=600"
+                            class="img-fluid h-100"
+                            style="object-fit: cover; border-top-left-radius: 12px; border-bottom-left-radius: 12px;">
+                    </div>
+                    <div class="col-md-8 p-4">
+                        <div class="d-flex justify-content-between align-items-start mb-3">
+                            <div>
+                                <h5 class="fw-bold mb-1">1957 Roadster 'Iron Heart' Overhaul</h5>
+                                <p class="small text-muted">Client: In-House Fleet | Est. Completion: Dec 2026</p>
+                            </div>
+                            <span class="badge bg-primary">In Progress</span>
+                        </div>
+                        <div class="progress mb-3" style="height: 10px;">
+                            <div class="progress-bar bg-primary" role="progressbar" style="width: 78%"
+                                aria-valuenow="78" aria-valuemin="0" aria-valuemax="100"></div>
+                        </div>
+                        <div class="d-flex justify-content-between small text-muted">
+                            <span>Phase 1: Stripping</span>
+                            <span>Phase 2: Bodywork</span>
+                            <span class="text-primary fw-bold">Phase 3: Assembly</span>
+                            <span>Phase 4: Finishing</span>
+                        </div>
+                    </div>
+                    <div class="card p-0 mb-4 border-0 shadow-sm overflow-hidden">
+                        <div class="row g-0">
+                            <div class="col-md-4">
+                                <img src="https://images.unsplash.com/photo-1549317661-bd32c8ce0db2?auto=format&fit=crop&w=800&h=600"
+                                    class="img-fluid h-100" style="object-fit: cover;">
+                            </div>
+                            <div class="col-md-8 p-4">
+                                <div class="d-flex justify-content-between align-items-start mb-3">
+                                    <div>
+                                        <h5 class="fw-bold mb-1">Airstream '64 Revival</h5>
+                                        <p class="small text-muted">Client: David Chen | Est. Completion: Jan 2027</p>
+                                    </div>
+                                    <span class="badge bg-secondary">Pre-Production</span>
+                                </div>
+                                <div class="progress mb-3" style="height: 10px;">
+                                    <div class="progress-bar bg-secondary" role="progressbar" style="width: 15%"
+                                        aria-valuenow="15" aria-valuemin="0" aria-valuemax="100"></div>
+                                </div>
+                                <div class="d-flex justify-content-between small text-muted">
+                                    <span class="text-dark fw-bold">Phase 1: Stripping</span>
+                                    <span>Phase 2: Bodywork</span>
+                                    <span>Phase 3: Assembly</span>
+                                    <span>Phase 4: Finishing</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+            </section>
+
+            <section id="clients" class="section-content py-4">
+                <div class="d-flex justify-content-between align-items-center mb-4">
+                    <h4 class="jost fw-bold mb-0">Client Directory</h4>
+                    <div class="input-group w-auto">
+                        <input type="text" class="form-control form-control-sm border-dark"
+                            placeholder="Search clients...">
+                        <button class="btn btn-sm btn-dark"><i class="bi bi-search"></i></button>
+                    </div>
+                </div>
+                <div class="row g-4">
+                    <div class="col-md-4">
+                        <div class="card p-4 text-center h-100">
+                            <img src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=crop&w=128&h=128"
+                                class="rounded-circle mx-auto mb-3 shadow-sm" width="64" height="64"
+                                style="object-fit: cover;">
+                            <h6 class="fw-bold mb-1">Michael Rossi</h6>
+                            <p class="small text-muted mb-3"><i class="bi bi-envelope me-2"></i>mrossi@example.com</p>
+                            <div class="d-flex justify-content-center gap-2 mb-3">
+                                <span class="badge bg-light text-dark">VIP Tier</span>
+                                <span class="badge bg-light text-dark">3 Bookings</span>
+                            </div>
+                            <button class="btn btn-sm btn-outline-primary w-100 mt-auto">View Profile</button>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="card p-4 text-center h-100">
+                            <img src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?auto=format&fit=crop&w=128&h=128"
+                                class="rounded-circle mx-auto mb-3 shadow-sm" width="64" height="64"
+                                style="object-fit: cover;">
+                            <h6 class="fw-bold mb-1">Sarah Jenkins</h6>
+                            <p class="small text-muted mb-3"><i class="bi bi-envelope me-2"></i>s.jenkins@example.com
+                            </p>
+                            <div class="d-flex justify-content-center gap-2 mb-3">
+                                <span class="badge bg-light text-dark">Standard</span>
+                                <span class="badge bg-light text-dark">1 Booking</span>
+                            </div>
+                            <button class="btn btn-sm btn-outline-primary w-100 mt-auto">View Profile</button>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="card p-4 text-center h-100">
+                            <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=128&h=128"
+                                class="rounded-circle mx-auto mb-3 shadow-sm" width="64" height="64"
+                                style="object-fit: cover;">
+                            <h6 class="fw-bold mb-1">David Chen</h6>
+                            <p class="small text-muted mb-3"><i class="bi bi-envelope me-2"></i>dchen@example.com</p>
+                            <div class="d-flex justify-content-center gap-2 mb-3">
+                                <span class="badge bg-light text-dark">Elite</span>
+                                <span class="badge bg-light text-dark">Lab Project</span>
+                            </div>
+                            <button class="btn btn-sm btn-outline-primary w-100 mt-auto">View Profile</button>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section id="settings" class="section-content py-4">
+                <h4 class="jost fw-bold mb-4">Console Settings</h4>
+                <div class="row">
+                    <div class="col-lg-8">
+                        <div class="card p-4">
+                            <h6 class="fw-bold mb-4 border-bottom pb-2">Platform Configuration</h6>
+                            <form>
+                                <div class="row g-3 mb-4">
+                                    <div class="col-md-6">
+                                        <label class="form-label small fw-bold">Platform Name</label>
+                                        <input type="text" class="form-control" value="Silver Studio">
+                                    </div>
+                                    <div class="col-md-6">
+                                        <label class="form-label small fw-bold">Contact Email</label>
+                                        <input type="email" class="form-control" value="admin@silverstudio.com">
+                                    </div>
+                                </div>
+                                <h6 class="fw-bold mb-3">Security & Access</h6>
+                                <div class="form-check form-switch mb-2">
+                                    <input class="form-check-input" type="checkbox" id="twoFactor" checked>
+                                    <label class="form-check-label small" for="twoFactor">Require Two-Factor
+                                        Auth</label>
+                                </div>
+                                <div class="form-check form-switch mb-4">
+                                    <input class="form-check-input" type="checkbox" id="maintenance">
+                                    <label class="form-check-label small" for="maintenance">Enable Maintenance
+                                        Mode</label>
+                                </div>
+                                <div class="text-end border-top pt-3">
+                                    <button type="button" class="btn btn-primary">Save Configuration</button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+        </main>
+    </div>
+
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <!-- Custom Theme JS -->
+    <script src="js/main.js"></script>
+    <script>
+        // Admin Console Navigation Controller
+        const mobileDropdown = document.getElementById('adminMobileDropdown');
+        const mobileToggle = document.getElementById('mobileNavToggle');
+
+        // Mobile Toggle Function
+        if (mobileToggle) {
+            mobileToggle.onclick = (e) => {
+                e.stopPropagation();
+                mobileDropdown.classList.toggle('show');
+            };
+        }
+
+        // Close dropdown when clicking outside
+        window.onclick = (event) => {
+            if (mobileDropdown && mobileDropdown.classList.contains('show')) {
+                if (!event.target.closest('#mobileNavToggle') && !event.target.closest('#adminMobileDropdown')) {
+                    mobileDropdown.classList.remove('show');
+                }
+            }
+        };
+
+        // Section Switching for both Sidebar & Mobile Dropdown
+        function showSection(sectionId) {
+            document.querySelectorAll('.section-content').forEach(s => s.classList.remove('active'));
+            document.querySelectorAll('.nav-link-admin, .admin-mobile-link').forEach(n => n.classList.remove('active'));
+
+            const targetSection = document.getElementById(sectionId);
+            if (targetSection) {
+                targetSection.classList.add('active');
+            }
+
+            // Highlight current in both menus
+            const relevantLinks = document.querySelectorAll(`[onclick="showSection('${sectionId}')"]`);
+            relevantLinks.forEach(link => link.classList.add('active'));
+
+            // Auto-close mobile dropdown after selection
+            if (mobileDropdown) {
+                mobileDropdown.classList.remove('show');
+            }
+        }
+    </script>
+</body>
+
+</html>

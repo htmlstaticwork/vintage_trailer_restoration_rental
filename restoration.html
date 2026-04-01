@@ -1,0 +1,343 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Master Restoration | Silver Studio</title>
+    <meta name="description"
+        content="Rescuing, Reimagining, and Restoring the Golden Age of Travel. Our craftsman-led restoration process.">
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Playfair+Display:ital,wght@0,400;0,700;1,400&display=swap"
+        rel="stylesheet">
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Bootstrap Icons -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="css/styles.css">
+    <link rel="icon" type="image/png" href="assets/favicon.png">
+    <script>
+        (function() {
+            const savedTheme = localStorage.getItem('theme');
+            if (savedTheme === 'dark') {
+                document.documentElement.setAttribute('data-theme', 'dark');
+                document.body?.setAttribute('data-theme', 'dark');
+            }
+        })();
+    </script>
+</head>
+
+<body>
+
+    <!-- Header & Navigation -->
+    <header class="navbar navbar-expand-lg sticky-top">
+        <div class="container">
+            <a class="navbar-brand playfair logo-text text-primary" href="index.html">
+                <i class="bi bi-car-front-fill me-2"></i>Silver Studio
+            </a>
+
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto align-items-center">
+                    <li class="nav-item">
+                        <a class="nav-link" href="index.html">Home 1</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="home-premium.html">Home 2</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="about.html">About</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="trailers.html">Trailers</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" class="nav-link active" href="restoration.html">Restoration</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="gallery.html">Gallery</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="contact.html">Contact</a>
+                    </li>
+                    <!-- Desktop Dashboard Dropdown -->
+                    <li class="nav-item ms-3 d-none d-lg-flex align-items-center dropdown">
+                        <a class="nav-link dropdown-toggle no-caret" href="#" id="dashboardDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false" title="Portals">
+                            <i class="bi bi-speedometer2 fs-5"></i>
+                        </a>
+                        <ul class="dropdown-menu dropdown-menu-end shadow border-0 mt-2" aria-labelledby="dashboardDropdown">
+                            <li><h6 class="dropdown-header small text-muted text-uppercase tracking-wider">Access Portals</h6></li>
+                            <li><a class="dropdown-item py-2" href="dashboard.html"><i class="bi bi-person-badge me-2"></i>Customer Portal</a></li>
+                            <li><a class="dropdown-item py-2" href="admin.html"><i class="bi bi-shield-lock me-2"></i>Admin Console</a></li>
+                        </ul>
+                    </li>
+
+                    <!-- Mobile Dashboard Links -->
+                    <li class="nav-item d-lg-none">
+                        <a class="nav-link" href="dashboard.html">Customer Portal</a>
+                    </li>
+                    <li class="nav-item d-lg-none">
+                        <a class="nav-link" href="admin.html">Admin Console</a>
+                    </li>
+                    <li class="nav-item ms-3 d-flex align-items-center">
+                        <a href="signup.html" class="nav-link" title="Sign Up">
+                            <i class="bi bi-person-circle fs-5"></i>
+                        </a>
+                    </li>
+                    <li class="nav-item ms-3 d-flex align-items-center gap-2">
+                        <button id="theme-toggle" class="theme-toggle" title="Toggle Theme">
+                            <i class="bi bi-moon"></i>
+                        </button>
+                        <button id="rtl-toggle" class="rtl-toggle" title="Toggle RTL">
+                            <i class="bi bi-translate"></i>
+                        </button>
+                    </li>
+                    <li class="nav-item ms-3 d-flex align-items-center">
+                        <a href="booking.html" class="btn btn-primary btn-sm text-nowrap">Book Now</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </header>
+
+    <!-- Restoration Hero -->
+    <section class="bg-light-custom py-5">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-8 mx-auto text-center">
+                    <h1 class="playfair display-4 mb-3">The Art of Restoration</h1>
+                    <p class="lead text-muted">Resourcing, Reimagining, and Restoring the Golden Age of Automotive
+                        Excellence.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Our Philosophy -->
+    <section class="py-5">
+        <div class="container">
+            <div class="row align-items-center">
+                <div class="col-lg-6 mb-4">
+                    <img src="https://images.unsplash.com/photo-1553440569-bcc63803a83d?auto=format&fit=crop&w=800"
+                        class="img-fluid rounded shadow-lg" style="object-fit: cover;" alt="Master Mechanics Workshop">
+                </div>
+                <div class="col-lg-6 ps-lg-5">
+                    <h2 class="playfair mb-4">Our Craftsmanship Philosophy</h2>
+                    <p class="text-muted mb-4">Every vehicle that arrives at our facility is more than just a project;
+                        it's a piece of mechanical history. We believe in preserving original performance
+                        characteristics while meticulously revitalizing the driving experience.</p>
+                    <div class="row g-4">
+                        <div class="col-6">
+                            <h6 class="playfair mb-1 text-primary">Precision</h6>
+                            <p class="small text-muted">Track-grade tuning for naturally aspirated engines.</p>
+                        </div>
+                        <div class="col-6">
+                            <h6 class="playfair mb-1 text-primary">Authenticity</h6>
+                            <p class="small text-muted">OEM hardware and period-correct replacement parts.</p>
+                        </div>
+                        <div class="col-6">
+                            <h6 class="playfair mb-1 text-primary">Luxury</h6>
+                            <p class="small text-muted">Paint correction and bespoke interior upholstery.</p>
+                        </div>
+                        <div class="col-6">
+                            <h6 class="playfair mb-1 text-primary">Modernization</h6>
+                            <p class="small text-muted">Subtle integration of modern suspension tuning.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Before & After Gallery -->
+    <section class="bg-light py-5">
+        <div class="container">
+            <div class="text-center mb-5">
+                <h2 class="playfair display-5">Transformation Showcase</h2>
+                <p class="text-muted">A selection of our most challenging and rewarding projects.</p>
+            </div>
+
+            <div class="row g-4">
+                <!-- Gallery Item 1 -->
+                <div class="col-md-6">
+                    <div class="card border-0 shadow-sm">
+                        <div class="ba-slider">
+                            <div class="ba-image ba-before"
+                                style="background-image: url('https://images.unsplash.com/photo-1560958089-b8a1929cea89?auto=format&fit=crop&w=1200&grayscale=true');">
+                            </div>
+                            <div class="ba-image ba-after"
+                                style="background-image: url('https://images.unsplash.com/photo-1560958089-b8a1929cea89?auto=format&fit=crop&w=1200');">
+                            </div>
+                            <div class="ba-handle"><i class="bi bi-arrows-expand"></i></div>
+                        </div>
+                        <div class="card-body">
+                            <h4 class="playfair">A European Icon</h4>
+                            <p class="small text-muted">Complete structural teardown, engine rebuild, and 300-hour
+                                polish.</p>
+                        </div>
+                    </div>
+                </div>
+                <!-- Gallery Item 2 -->
+                <div class="col-md-6">
+                    <div class="card border-0 shadow-sm">
+                        <div class="ba-slider">
+                            <div class="ba-image ba-before"
+                                style="background-image: url('https://images.unsplash.com/photo-1614200187524-dc4b892acf16?auto=format&fit=crop&w=1200&grayscale=true');">
+                            </div>
+                            <div class="ba-image ba-after"
+                                style="background-image: url('https://images.unsplash.com/photo-1614200187524-dc4b892acf16?auto=format&fit=crop&w=1200');">
+                            </div>
+                            <div class="ba-handle"><i class="bi bi-arrows-expand"></i></div>
+                        </div>
+                        <div class="card-body">
+                            <h4 class="playfair">The Track Special</h4>
+                            <p class="small text-muted">Rescuing a neglected chassis back into a modern mechanical
+                                masterpiece.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Restoration Packages Section -->
+    <section class="py-5 bg-light-custom position-relative">
+        <div class="container py-4">
+            <div class="text-center mb-5">
+                <h6 class="text-primary text-uppercase tracking-widest mb-2 fw-bold" style="letter-spacing: 2px;">
+                    Automotive Care</h6>
+                <h2 class="playfair display-5">Restoration Packages</h2>
+                <p class="text-muted">Choose the depth of restoration your cherished vehicle deserves.</p>
+            </div>
+            <div class="row g-4 text-center">
+                <!-- Tier 1 -->
+                <div class="col-lg-4 col-md-6">
+                    <div class="card h-100 border-0 shadow-sm p-4 hover-lift d-flex flex-column">
+                        <i class="bi bi-stars text-primary fs-1 mb-3"></i>
+                        <h4 class="playfair mb-3">Concierge Detailing</h4>
+                        <p class="text-muted small mb-4 flex-grow-1">A profound reset of the exterior and interior
+                            featuring a 30-step paint correction process, multi-stage ceramic coating, and deep leather
+                            conditioning.</p>
+                        <hr class="w-25 mx-auto bg-primary opacity-25 mb-4">
+                        <div class="mt-auto">
+                            <a href="contact.html" class="btn btn-outline-primary btn-sm rounded-pill d-inline-flex align-items-center justify-content-center"
+                                style="width: 200px; height: 45px; padding: 0;">Inquire Now</a>
+                        </div>
+                    </div>
+                </div>
+                <!-- Tier 2 -->
+                <div class="col-lg-4 col-md-6">
+                    <div
+                        class="card h-100 border-primary border-2 shadow-lg p-4 bg-primary text-white hover-lift position-relative overflow-hidden d-flex flex-column">
+                        <div class="position-absolute top-0 end-0 bg-white text-primary px-3 py-1 small fw-bold"
+                            style="border-bottom-left-radius: 8px;">Most Popular</div>
+                        <i class="bi bi-tools text-white fs-1 mb-3"></i>
+                        <h4 class="playfair mb-3">Mechanical Revival</h4>
+                        <p class="text-white-50 small mb-4 flex-grow-1">An expansive engineering service targeting
+                            power, chassis stiffness, and suspension compliance. Includes full engine-out timing
+                            procedures.</p>
+                        <hr class="w-25 mx-auto bg-white opacity-25 mb-4">
+                        <div class="mt-auto">
+                            <a href="contact.html" class="btn btn-light text-primary btn-sm rounded-pill d-inline-flex align-items-center justify-content-center"
+                                style="width: 200px; height: 45px; padding: 0;">Inquire Now</a>
+                        </div>
+                    </div>
+                </div>
+                <!-- Tier 3 -->
+                <div class="col-lg-4 col-md-6">
+                    <div class="card h-100 border-0 shadow-sm p-4 hover-lift d-flex flex-column">
+                        <i class="bi bi-award text-primary fs-1 mb-3"></i>
+                        <h4 class="playfair mb-3">The Silver Standard</h4>
+                        <p class="text-muted small mb-4 flex-grow-1">The ultimate nut-and-bolt, frame-off restoration
+                            designed to exceed showroom conditions. Factory correct hardware parsing and full mechanical
+                            remanufacturing.</p>
+                        <hr class="w-25 mx-auto bg-primary opacity-25 mb-4">
+                        <div class="mt-auto">
+                            <a href="contact.html" class="btn btn-outline-primary btn-sm rounded-pill d-inline-flex align-items-center justify-content-center"
+                                style="width: 200px; height: 45px; padding: 0;">Inquire Now</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Custom Services CTA -->
+    <section class="py-5 border-top">
+        <div class="container text-center">
+            <h2 class="playfair mb-4">Have a Vision for an Automotive Masterpiece?</h2>
+            <p class="lead mb-4">We accept a strictly limited number of custom commissions each year.</p>
+            <a href="contact.html" class="btn btn-primary btn-lg px-5">Consult Special Projects</a>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-4 mb-4">
+                    <a href="index.html" class="text-decoration-none">
+                        <div class="playfair logo-text mb-4" style="color: var(--primary) !important;"><i
+                                class="bi bi-car-front-fill me-2"></i>Silver Studio</div>
+                    </a>
+                    <p class="text-accent mb-4">Nostalgic trailer rentals and master-class restoration. Your journey
+                        through history begins here.</p>
+                    <div class="d-flex gap-3">
+                        <a href="#"><i class="bi bi-facebook fs-5"></i></a>
+                        <a href="#"><i class="bi bi-instagram fs-5"></i></a>
+                        <a href="#"><i class="bi bi-pinterest fs-5"></i></a>
+                    </div>
+                </div>
+                <div class="col-lg-2 col-md-4 mb-4">
+                    <h6 class="text-white mb-3">Quick Links</h6>
+                    <ul class="list-unstyled">
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="trailers.html">Trailers</a></li>
+                        <li><a href="restoration.html">Restoration</a></li>
+                        <li><a href="gallery.html">Gallery</a></li>
+                    </ul>
+                </div>
+                <div class="col-lg-2 col-md-4 mb-4">
+                    <h6 class="text-white mb-3">Support</h6>
+                    <ul class="list-unstyled">
+                        <li><a href="contact.html">Contact Us</a></li>
+                        <li><a href="faq.html">FAQs</a></li>
+                        <li><a href="#">Privacy Policy</a></li>
+                        <li><a href="#">Terms of Service</a></li>
+                    </ul>
+                </div>
+                <div class="col-lg-4 col-md-4">
+                    <h6 class="text-white mb-3">Newsletter</h6>
+                    <p class="small text-accent mb-3">Subscribe for travel stories and restoration updates.</p>
+                    <form class="d-flex">
+                        <input type="email" class="form-control form-control-sm me-2" placeholder="Email Address">
+                        <button type="submit" class="btn btn-primary btn-sm">Join</button>
+                    </form>
+                </div>
+            </div>
+            <hr class="mt-5 bg-white">
+            <div class="text-center small text-accent mt-4">
+                &copy; 2026 Silver Studio. All rights reserved.
+            </div>
+        </div>
+        <button id="scrollToTop" class="btn btn-primary rounded-circle position-fixed shadow-lg"
+            style="bottom: 30px; right: 30px; display: none; z-index: 1050; width: 45px; height: 45px; align-items: center; justify-content: center; border:none; outline:none;"
+            onclick="window.scrollTo({top: 0, behavior: 'smooth'});">
+            <i class="bi bi-arrow-up"></i>
+        </button>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <!-- Custom JS -->
+    <script src="js/main.js"></script>
+</body>
+
+</html>
+

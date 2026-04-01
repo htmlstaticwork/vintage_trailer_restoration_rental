@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FAQs | Silver Studio</title>
+    <meta name="description"
+        content="Frequently asked questions about vintage trailer rentals and restoration.">
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Playfair+Display:ital,wght@0,400;0,700;1,400&display=swap"
+        rel="stylesheet">
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Bootstrap Icons -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="css/styles.css">
+    <link rel="icon" type="image/png" href="assets/favicon.png">
+    <script>
+        (function() {
+            const savedTheme = localStorage.getItem('theme');
+            if (savedTheme === 'dark') {
+                document.documentElement.setAttribute('data-theme', 'dark');
+                document.body?.setAttribute('data-theme', 'dark');
+            }
+        })();
+    </script>
+</head>
+<body>
+
+    <!-- Header & Navigation -->
+    <header class="navbar navbar-expand-lg sticky-top">
+        <div class="container">
+            <a class="navbar-brand playfair logo-text text-primary" href="index.html">
+                <i class="bi bi-car-front-fill me-2"></i>Silver Studio
+            </a>
+
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto align-items-center">
+                    <li class="nav-item">
+                        <a class="nav-link active" href="index.html">Home 1</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="home-premium.html">Home 2</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="about.html">About</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="trailers.html">Trailers</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="restoration.html">Restoration</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="gallery.html">Gallery</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="contact.html">Contact</a>
+                    </li>
+                    <!-- Desktop Dashboard Dropdown -->
+                    <li class="nav-item ms-3 d-none d-lg-flex align-items-center dropdown">
+                        <a class="nav-link dropdown-toggle no-caret" href="#" id="dashboardDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false" title="Portals">
+                            <i class="bi bi-speedometer2 fs-5"></i>
+                        </a>
+                        <ul class="dropdown-menu dropdown-menu-end shadow border-0 mt-2" aria-labelledby="dashboardDropdown">
+                            <li><h6 class="dropdown-header small text-muted text-uppercase tracking-wider">Access Portals</h6></li>
+                            <li><a class="dropdown-item py-2" href="dashboard.html"><i class="bi bi-person-badge me-2"></i>Customer Portal</a></li>
+                            <li><a class="dropdown-item py-2" href="admin.html"><i class="bi bi-shield-lock me-2"></i>Admin Console</a></li>
+                        </ul>
+                    </li>
+
+                    <!-- Mobile Dashboard Links -->
+                    <li class="nav-item d-lg-none">
+                        <a class="nav-link" href="dashboard.html">Customer Portal</a>
+                    </li>
+                    <li class="nav-item d-lg-none">
+                        <a class="nav-link" href="admin.html">Admin Console</a>
+                    </li>
+                    <li class="nav-item ms-3 d-flex align-items-center">
+                        <a href="signup.html" class="nav-link" title="Sign Up">
+                            <i class="bi bi-person-circle fs-5"></i>
+                        </a>
+                    </li>
+                    <li class="nav-item ms-3 d-flex align-items-center gap-2">
+                        <button id="theme-toggle" class="theme-toggle" title="Toggle Theme">
+                            <i class="bi bi-moon"></i>
+                        </button>
+                        <button id="rtl-toggle" class="rtl-toggle" title="Toggle RTL">
+                            <i class="bi bi-translate"></i>
+                        </button>
+                    </li>
+                    <li class="nav-item ms-3 d-flex align-items-center">
+                        <a href="booking.html" class="btn btn-primary btn-sm text-nowrap">Book Now</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </header>
+
+    <!-- FAQ Hero -->
+    <section class="bg-light py-5">
+        <div class="container text-center">
+            <h1 class="display-3 playfair mb-4">Your Questions, Answered</h1>
+            <p class="lead text-muted mx-auto" style="max-width: 600px;">Everything you need to know about renting a vintage trailer or commissioning a restoration.</p>
+        </div>
+    </section>
+
+    <!-- FAQ Accordion -->
+    <section class="py-5">
+        <div class="container" style="max-width: 800px;">
+            <div class="accordion accordion-flush" id="faqAccordion">
+                <!-- FAQ Item 1 -->
+                <div class="accordion-item border-bottom mb-3">
+                    <h2 class="accordion-header">
+                        <button class="accordion-button bg-transparent playfair fs-5" type="button" data-bs-toggle="collapse" data-bs-target="#faq1">
+                            Do I need a special license to tow a vintage trailer?
+                        </button>
+                    </h2>
+                    <div id="faq1" class="accordion-collapse collapse show" data-bs-parent="#faqAccordion">
+                        <div class="accordion-body text-muted small">
+                             No special license is required for most of our fleet. However, we do require a brief orientation session before your departure to ensure you're comfortable with the hitching and towing process.
+                        </div>
+                    </div>
+                </div>
+                <!-- FAQ Item 2 -->
+                <div class="accordion-item border-bottom mb-3">
+                    <h2 class="accordion-header">
+                        <button class="accordion-button bg-transparent collapsed playfair fs-5" type="button" data-bs-toggle="collapse" data-bs-target="#faq2">
+                            Are the trailers climate-controlled?
+                        </button>
+                    </h2>
+                    <div id="faq2" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
+                        <div class="accordion-body text-muted small">
+                            Yes! Every trailer in our rental fleet features discreetly integrated heating and air conditioning systems to ensure year-round comfort regardless of the destination.
+                        </div>
+                    </div>
+                </div>
+                <!-- FAQ Item 3 -->
+                <div class="accordion-item border-bottom mb-3">
+                    <h2 class="accordion-header">
+                        <button class="accordion-button bg-transparent collapsed playfair fs-5" type="button" data-bs-toggle="collapse" data-bs-target="#faq3">
+                            How long does a full restoration take?
+                        </button>
+                    </h2>
+                    <div id="faq3" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
+                        <div class="accordion-body text-muted small">
+                            A complete shell-off restoration typically takes between 8 to 14 months, depending on the availability of parts and the complexity of the interior design. We provide monthly video updates throughout the process.
+                        </div>
+                    </div>
+                </div>
+                <!-- FAQ Item 4 -->
+                <div class="accordion-item border-bottom mb-3">
+                    <h2 class="accordion-header">
+                        <button class="accordion-button bg-transparent collapsed playfair fs-5" type="button" data-bs-toggle="collapse" data-bs-target="#faq4">
+                            What is your cancellation policy?
+                        </button>
+                    </h2>
+                    <div id="faq4" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
+                        <div class="accordion-body text-muted small">
+                            We offer a full refund for cancellations made at least 30 days prior to the rental start date. Within 30 days, we offer a 50% refund or a full credit for future travel.
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-4 mb-4">
+                    <a href="index.html" class="text-decoration-none">
+                        <div class="playfair logo-text mb-4" style="color: var(--primary) !important;"><i
+                                class="bi bi-car-front-fill me-2"></i>Silver Studio</div>
+                    </a>
+                    <p class="text-accent mb-4">Nostalgic trailer rentals and master-class restoration. Your journey
+                        through history begins here.</p>
+                    <div class="d-flex gap-3">
+                        <a href="#"><i class="bi bi-facebook fs-5"></i></a>
+                        <a href="#"><i class="bi bi-instagram fs-5"></i></a>
+                        <a href="#"><i class="bi bi-pinterest fs-5"></i></a>
+                    </div>
+                </div>
+                <div class="col-lg-2 col-md-4 mb-4">
+                    <h6 class="text-white mb-3">Quick Links</h6>
+                    <ul class="list-unstyled">
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="trailers.html">Trailers</a></li>
+                        <li><a href="restoration.html">Restoration</a></li>
+                        <li><a href="gallery.html">Gallery</a></li>
+                    </ul>
+                </div>
+                <div class="col-lg-2 col-md-4 mb-4">
+                    <h6 class="text-white mb-3">Support</h6>
+                    <ul class="list-unstyled">
+                        <li><a href="contact.html">Contact Us</a></li>
+                        <li><a href="faq.html">FAQs</a></li>
+                        <li><a href="#">Privacy Policy</a></li>
+                        <li><a href="#">Terms of Service</a></li>
+                    </ul>
+                </div>
+                <div class="col-lg-4 col-md-4">
+                    <h6 class="text-white mb-3">Newsletter</h6>
+                    <p class="small text-accent mb-3">Subscribe for travel stories and restoration updates.</p>
+                    <form class="d-flex">
+                        <input type="email" class="form-control form-control-sm me-2" placeholder="Email Address">
+                        <button type="submit" class="btn btn-primary btn-sm">Join</button>
+                    </form>
+                </div>
+            </div>
+            <hr class="mt-5 bg-white">
+            <div class="text-center small text-accent mt-4">
+                &copy; 2026 Silver Studio. All rights reserved.
+            </div>
+        </div>
+        <button id="scrollToTop" class="btn btn-primary rounded-circle position-fixed shadow-lg"
+            style="bottom: 30px; right: 30px; display: none; z-index: 1050; width: 45px; height: 45px; align-items: center; justify-content: center; border:none; outline:none;"
+            onclick="window.scrollTo({top: 0, behavior: 'smooth'});">
+            <i class="bi bi-arrow-up"></i>
+        </button>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <!-- Custom JS -->
+    <script src="js/main.js"></script>
+</body>
+</html>
