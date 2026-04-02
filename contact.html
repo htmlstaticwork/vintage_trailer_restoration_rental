@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -20,7 +21,7 @@
     <link rel="stylesheet" href="css/styles.css">
     <link rel="icon" type="image/png" href="assets/favicon.png">
     <script>
-        (function() {
+        (function () {
             const savedTheme = localStorage.getItem('theme');
             if (savedTheme === 'dark') {
                 document.documentElement.setAttribute('data-theme', 'dark');
@@ -29,13 +30,14 @@
         })();
     </script>
 </head>
+
 <body>
 
     <!-- Header & Navigation -->
     <header class="navbar navbar-expand-lg sticky-top">
         <div class="container">
             <a class="navbar-brand playfair logo-text text-primary" href="index.html">
-                <i class="bi bi-car-front-fill me-2"></i>Silver Studio
+                <i class="bi bi-house-heart me-2"></i>Silver Studio
             </a>
 
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
@@ -67,13 +69,20 @@
                     </li>
                     <!-- Desktop Dashboard Dropdown -->
                     <li class="nav-item ms-3 d-none d-lg-flex align-items-center dropdown">
-                        <a class="nav-link dropdown-toggle no-caret" href="#" id="dashboardDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false" title="Portals">
+                        <a class="nav-link dropdown-toggle no-caret" href="#" id="dashboardDropdown" role="button"
+                            data-bs-toggle="dropdown" aria-expanded="false" title="Portals">
                             <i class="bi bi-speedometer2 fs-5"></i>
                         </a>
-                        <ul class="dropdown-menu dropdown-menu-end shadow border-0 mt-2" aria-labelledby="dashboardDropdown">
-                            <li><h6 class="dropdown-header small text-muted text-uppercase tracking-wider">Access Portals</h6></li>
-                            <li><a class="dropdown-item py-2" href="dashboard.html"><i class="bi bi-person-badge me-2"></i>Customer Portal</a></li>
-                            <li><a class="dropdown-item py-2" href="admin.html"><i class="bi bi-shield-lock me-2"></i>Admin Console</a></li>
+                        <ul class="dropdown-menu dropdown-menu-end shadow border-0 mt-2"
+                            aria-labelledby="dashboardDropdown">
+                            <li>
+                                <h6 class="dropdown-header small text-muted text-uppercase tracking-wider">Access
+                                    Portals</h6>
+                            </li>
+                            <li><a class="dropdown-item py-2" href="dashboard.html"><i
+                                        class="bi bi-person-badge me-2"></i>Customer Portal</a></li>
+                            <li><a class="dropdown-item py-2" href="admin.html"><i
+                                        class="bi bi-shield-lock me-2"></i>Admin Console</a></li>
                         </ul>
                     </li>
 
@@ -111,10 +120,11 @@
             <div class="row mb-5">
                 <div class="col-lg-8 mx-auto text-center">
                     <h1 class="playfair display-4 mb-3">Connect With Us</h1>
-                    <p class="lead text-muted">Whether you're booking an executive car or organizing a premium experience, we're here to help.</p>
+                    <p class="lead text-muted">Whether you're booking a vintage trailer or inquiring about a custom
+                        restoration, we're here to help.</p>
                 </div>
             </div>
-            
+
             <div class="row g-5">
                 <!-- Contact Info -->
                 <div class="col-lg-4">
@@ -144,14 +154,17 @@
                         <div class="mt-4 border-top pt-4">
                             <h6 class="small text-uppercase fw-bold text-muted mb-3">Follow the Journey</h6>
                             <div class="d-flex gap-3">
-                                <a href="#" class="btn btn-sm rounded-circle p-2 social-circle-btn"><i class="bi bi-instagram"></i></a>
-                                <a href="#" class="btn btn-sm rounded-circle p-2 social-circle-btn"><i class="bi bi-facebook"></i></a>
-                                <a href="#" class="btn btn-sm rounded-circle p-2 social-circle-btn"><i class="bi bi-pinterest"></i></a>
+                                <a href="#" class="btn btn-sm rounded-circle p-2 social-circle-btn"><i
+                                        class="bi bi-instagram"></i></a>
+                                <a href="#" class="btn btn-sm rounded-circle p-2 social-circle-btn"><i
+                                        class="bi bi-facebook"></i></a>
+                                <a href="#" class="btn btn-sm rounded-circle p-2 social-circle-btn"><i
+                                        class="bi bi-pinterest"></i></a>
                             </div>
                         </div>
                     </div>
                 </div>
-                
+
                 <!-- Contact Form -->
                 <div class="col-lg-8">
                     <div class="card bg-light-custom border-0 shadow-lg p-4 p-md-5">
@@ -160,12 +173,14 @@
                             <div class="row g-3">
                                 <div class="col-md-6">
                                     <label class="form-label small fw-bold text-muted">Full Name</label>
-                                    <input type="text" class="form-control bg-light-custom py-3" placeholder="Your Name" required>
+                                    <input type="text" class="form-control bg-light-custom py-3" placeholder="Your Name"
+                                        required>
                                     <div class="invalid-feedback">Please enter your full name.</div>
                                 </div>
                                 <div class="col-md-6">
                                     <label class="form-label small fw-bold text-muted">Email Address</label>
-                                    <input type="email" class="form-control bg-light-custom py-3" placeholder="example@mail.com" required>
+                                    <input type="email" class="form-control bg-light-custom py-3"
+                                        placeholder="example@mail.com" required>
                                     <div class="invalid-feedback">Please enter a valid email address.</div>
                                 </div>
                                 <div class="col-md-12">
@@ -181,11 +196,13 @@
                                 </div>
                                 <div class="col-md-12">
                                     <label class="form-label small fw-bold text-muted">How can we help?</label>
-                                    <textarea class="form-control bg-light-custom py-3" rows="5" placeholder="Tell us more about your vintage vision..." required></textarea>
+                                    <textarea class="form-control bg-light-custom py-3" rows="5"
+                                        placeholder="Tell us more about your vintage vision..." required></textarea>
                                     <div class="invalid-feedback">Please provide specific details in your message.</div>
                                 </div>
                                 <div class="col-md-12">
-                                    <button type="submit" class="btn btn-primary btn-lg w-100 py-3">Send Inquiry</button>
+                                    <button type="submit" class="btn btn-primary btn-lg w-100 py-3">Send
+                                        Inquiry</button>
                                 </div>
                             </div>
                         </form>
@@ -198,13 +215,9 @@
     <!-- Interactive Map -->
     <section class="py-0">
         <div class="container-fluid p-0">
-            <iframe 
-                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3305.733248043701!2d-118.24532!3d34.05223!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x80c2c648fa1d4803%3A0xdec27bf11f9fd336!2sLos%20Angeles%2C%20CA!5e0!3m2!1sen!2sus!4v1700000000000!5m2!1sen!2sus" 
-                width="100%" 
-                height="450" 
-                style="border:0;" 
-                allowfullscreen="" 
-                loading="lazy" 
+            <iframe
+                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3305.733248043701!2d-118.24532!3d34.05223!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x80c2c648fa1d4803%3A0xdec27bf11f9fd336!2sLos%20Angeles%2C%20CA!5e0!3m2!1sen!2sus!4v1700000000000!5m2!1sen!2sus"
+                width="100%" height="450" style="border:0;" allowfullscreen="" loading="lazy"
                 referrerpolicy="no-referrer-when-downgrade">
             </iframe>
         </div>
@@ -217,7 +230,7 @@
                 <div class="col-lg-4 mb-4">
                     <a href="index.html" class="text-decoration-none">
                         <div class="playfair logo-text mb-4" style="color: var(--primary) !important;"><i
-                                class="bi bi-car-front-fill me-2"></i>Silver Studio</div>
+                                class="bi bi-house-heart me-2"></i>Silver Studio</div>
                     </a>
                     <p class="text-accent mb-4">Nostalgic trailer rentals and master-class restoration. Your journey
                         through history begins here.</p>
@@ -286,5 +299,5 @@
         })()
     </script>
 </body>
-</html>
 
+</html>

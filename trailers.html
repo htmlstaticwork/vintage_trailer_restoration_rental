@@ -20,7 +20,7 @@
     <link rel="stylesheet" href="css/styles.css">
     <link rel="icon" type="image/png" href="assets/favicon.png">
     <script>
-        (function() {
+        (function () {
             const savedTheme = localStorage.getItem('theme');
             if (savedTheme === 'dark') {
                 document.documentElement.setAttribute('data-theme', 'dark');
@@ -36,7 +36,7 @@
     <header class="navbar navbar-expand-lg sticky-top">
         <div class="container">
             <a class="navbar-brand playfair logo-text text-primary" href="index.html">
-                <i class="bi bi-car-front-fill me-2"></i>Silver Studio
+                <i class="bi bi-house-heart me-2"></i>Silver Studio
             </a>
 
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
@@ -119,25 +119,25 @@
             <div class="row">
                 <div class="col-lg-8 mx-auto text-center">
                     <h1 class="playfair display-4 mb-3">The Silver Collection</h1>
-                    <p class="lead text-muted">A curated stable of the world's most evocative automobiles. From
-                        mid-century icons to modern technological marvels.</p>
+                    <p class="lead text-muted">A curated collection of the world's most evocative vintage trailers. From
+                        mid-century icons to meticulously restored retro masterpieces.</p>
                 </div>
             </div>
 
             <div class="row g-3 p-4 bg-white rounded shadow-sm mt-5">
                 <div class="col-md-3">
-                    <label class="form-label small text-muted text-uppercase fw-bold" style="letter-spacing: 1px;">Body
-                        Style</label>
+                    <label class="form-label small text-muted text-uppercase fw-bold" style="letter-spacing: 1px;">Trailer
+                        Type</label>
                     <select class="form-select bg-light">
-                        <option>All Styles</option>
-                        <option>Exotics & Coupes</option>
-                        <option>Grand Tourers</option>
-                        <option>Classic Sedans</option>
+                        <option>All Types</option>
+                        <option>Airstreams</option>
+                        <option>Caravans</option>
+                        <option>Custom Shells</option>
                     </select>
                 </div>
                 <div class="col-md-3">
                     <label class="form-label small text-muted text-uppercase fw-bold"
-                        style="letter-spacing: 1px;">Performance</label>
+                        style="letter-spacing: 1px;">Sleep Capacity</label>
                     <select class="form-select bg-light">
                         <option>Any Power</option>
                         <option>Daily Refinement</option>
@@ -163,22 +163,21 @@
             <div class="row g-4">
                 <!-- Fleet Item 1 -->
                 <div class="col-md-6 col-lg-4">
-                    <div class="trailer-card h-100 border-0 shadow-sm">
+                    <div class="trailer-card d-flex flex-column h-100 border-0 shadow-sm">
                         <div class="position-relative overflow-hidden">
                             <img src="https://res.cloudinary.com/outdoorsy/image/upload/c_limit,w_2880,h_2160/t_odw,a_exif,q_auto,f_webp,h_2160,w_2880,c_fit,e_gen_restore,e_enhance/v1444694845/p/rentals/2560/images/ywbzbckzxms9lcrprzcf.jpg"
                                 class="img-fluid transition-transform" alt="Classic Icon">
                             <span class="position-absolute top-0 end-0 m-3 badge bg-primary">Featured</span>
                         </div>
-                        <div class="p-4">
+                        <div class="p-4 d-flex flex-column flex-grow-1">
                             <h3 class="playfair">Airstream '64 Revival</h3>
-                            <p class="small text-muted mb-3"><i class="bi bi-gear-wide-connected me-2"></i>Manual | <i
-                                    class="bi bi-speedometer2 me-2"></i>160 MPH</p>
-                            <p class="text-secondary small mb-4">A meticulously polished masterpiece with a custom
-                                walnut interior and modern mechanical heart.</p>
+
+                            <p class="text-secondary small mb-4">A beautifully restored classic with polished aluminum
+                                and a cozy walnut interior.</p>
                             <div class="d-flex justify-content-between align-items-center mt-auto">
-                                <span class="fs-5 fw-bold text-primary">$450 <small class="text-muted fw-normal">/
-                                        day</small></span>
-                                <a href="contact.html" class="btn btn-outline-primary btn-sm rounded-0">Inquire</a>
+                                <span class="fs-5 fw-bold text-primary">₹6,500 <small class="text-muted fw-normal">/
+                                        night</small></span>
+                                <a href="contact.html" class="btn btn-outline-primary btn-sm rounded-0">Book Now</a>
                             </div>
                         </div>
                     </div>
@@ -186,21 +185,20 @@
 
                 <!-- Fleet Item 2 -->
                 <div class="col-md-6 col-lg-4">
-                    <div class="trailer-card h-100 border-0 shadow-sm">
+                    <div class="trailer-card d-flex flex-column h-100 border-0 shadow-sm">
                         <div class="position-relative overflow-hidden">
-                            <img src="https://images.unsplash.com/photo-1583121274602-3e2820c69888?auto=format&fit=crop&w=600"
+                            <img src="https://images.unsplash.com/photo-1696430937755-ee56cb2fbbe2?fm=jpg&ixid=M3wxMjA3fDB8MHxwaG90by1yZWxhdGVkfDE1fHx8ZW58MHx8fHx8&ixlib=rb-4.1.0&q=60&w=3000"
                                 class="img-fluid transition-transform" alt="Modern Sport">
                         </div>
-                        <div class="p-4">
-                            <h3 class="playfair">The Track Special</h3>
-                            <p class="small text-muted mb-3"><i class="bi bi-gear-wide-connected me-2"></i>PDK | <i
-                                    class="bi bi-speedometer2 me-2"></i>195 MPH</p>
-                            <p class="text-secondary small mb-4">Precision engineering meets raw adrenaline. A
-                                track-focused weapon designed for the winding canyon roads.</p>
+                        <div class="p-4 d-flex flex-column flex-grow-1">
+                            <h3 class="playfair">Desert Pearl Caravan</h3>
+
+                            <p class="text-secondary small mb-4">A sun-kissed vintage trailer perfect for warm, scenic
+                                getaways.</p>
                             <div class="d-flex justify-content-between align-items-center mt-auto">
-                                <span class="fs-5 fw-bold text-primary">$650 <small class="text-muted fw-normal">/
-                                        day</small></span>
-                                <a href="contact.html" class="btn btn-outline-primary btn-sm rounded-0">Inquire</a>
+                                <span class="fs-5 fw-bold text-primary">₹5,800 <small class="text-muted fw-normal">/
+                                        night</small></span>
+                                <a href="contact.html" class="btn btn-outline-primary btn-sm rounded-0">Book Now</a>
                             </div>
                         </div>
                     </div>
@@ -208,21 +206,20 @@
 
                 <!-- Fleet Item 3 -->
                 <div class="col-md-6 col-lg-4">
-                    <div class="trailer-card h-100 border-0 shadow-sm">
+                    <div class="trailer-card d-flex flex-column h-100 border-0 shadow-sm">
                         <div class="position-relative overflow-hidden">
-                            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSRQvBm9AgmwuO736q3bWlbyYSqtY6zxuO1Bg&s"
+                            <img src="https://s3.amazonaws.com/images.gearjunkie.com/uploads/2021/06/taxa-outdoors-tigermoth-overland-4.jpg"
                                 class="img-fluid transition-transform" alt="Red Masterpiece">
                         </div>
-                        <div class="p-4">
-                            <h3 class="playfair">The Rosso Legend</h3>
-                            <p class="small text-muted mb-3"><i class="bi bi-gear-wide-connected me-2"></i>F1 | <i
-                                    class="bi bi-speedometer2 me-2"></i>202 MPH</p>
-                            <p class="text-secondary small mb-4">An Italian masterpiece in timeless red. Experience the
-                                soul of Maranello with every shift.</p>
+                        <div class="p-4 d-flex flex-column flex-grow-1">
+                            <h3 class="playfair">Forest Haven Camper</h3>
+
+                            <p class="text-secondary small mb-4">A cozy retreat designed for peaceful stays surrounded
+                                by nature.</p>
                             <div class="d-flex justify-content-between align-items-center mt-auto">
-                                <span class="fs-5 fw-bold text-primary">$800 <small class="text-muted fw-normal">/
-                                        day</small></span>
-                                <a href="contact.html" class="btn btn-outline-primary btn-sm rounded-0">Inquire</a>
+                                <span class="fs-5 fw-bold text-primary">₹4,900 <small class="text-muted fw-normal">/
+                                        night</small></span>
+                                <a href="contact.html" class="btn btn-outline-primary btn-sm rounded-0">Book Now</a>
                             </div>
                         </div>
                     </div>
@@ -230,21 +227,20 @@
 
                 <!-- Fleet Item 4 -->
                 <div class="col-md-6 col-lg-4">
-                    <div class="trailer-card h-100 border-0 shadow-sm">
+                    <div class="trailer-card d-flex flex-column h-100 border-0 shadow-sm">
                         <div class="position-relative overflow-hidden">
-                            <img src="https://images.unsplash.com/photo-1614200187524-dc4b892acf16?auto=format&fit=crop&w=600"
+                            <img src="https://images.unsplash.com/photo-1760612393693-8303856dfbed?auto=format&fit=crop&fm=jpg&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&ixlib=rb-4.1.0&q=60&w=3000"
                                 class="img-fluid transition-transform" alt="Grey Stealth">
                         </div>
-                        <div class="p-4">
-                            <h3 class="playfair">The Stealth GT</h3>
-                            <p class="small text-muted mb-3"><i class="bi bi-gear-wide-connected me-2"></i>Auto | <i
-                                    class="bi bi-speedometer2 me-2"></i>185 MPH</p>
-                            <p class="text-secondary small mb-4">Understated luxury with overwhelming power. The
-                                ultimate grand tourer for the discerning traveler.</p>
+                        <div class="p-4 d-flex flex-column flex-grow-1">
+                            <h3 class="playfair">Coastal Breeze Trailer</h3>
+
+                            <p class="text-secondary small mb-4">Light-filled interiors and breezy design for relaxing
+                                coastal escapes.</p>
                             <div class="d-flex justify-content-between align-items-center mt-auto">
-                                <span class="fs-5 fw-bold text-primary">$550 <small class="text-muted fw-normal">/
-                                        day</small></span>
-                                <a href="contact.html" class="btn btn-outline-primary btn-sm rounded-0">Inquire</a>
+                                <span class="fs-5 fw-bold text-primary">₹5,500 <small class="text-muted fw-normal">/
+                                        night</small></span>
+                                <a href="contact.html" class="btn btn-outline-primary btn-sm rounded-0">Book Now</a>
                             </div>
                         </div>
                     </div>
@@ -252,21 +248,20 @@
 
                 <!-- Fleet Item 5 -->
                 <div class="col-md-6 col-lg-4">
-                    <div class="trailer-card h-100 border-0 shadow-sm">
+                    <div class="trailer-card d-flex flex-column h-100 border-0 shadow-sm">
                         <div class="position-relative overflow-hidden">
-                            <img src="https://images.unsplash.com/photo-1592198084033-aade902d1aae?auto=format&fit=crop&w=600"
+                            <img src="https://assets.newatlas.com/dims4/default/f9facc1/2147483647/strip/true/crop/2362x1575%2B0%2B0/resize/1440x960%21/format/webp/quality/90/?url=https%3A%2F%2Fnewatlas-brightspot.s3.amazonaws.com%2F68%2F9a%2F0a3071e045cd8186599516c0f89c%2F2022-ww-beachy-420-mood-sitzen-eingangstuer-draussen-people-aussen-1810-bear-presse.jpg"
                                 class="img-fluid transition-transform" alt="Red Spider">
                         </div>
-                        <div class="p-4">
-                            <h3 class="playfair">The Open-Air Spider</h3>
-                            <p class="small text-muted mb-3"><i class="bi bi-gear-wide-connected me-2"></i>F1 | <i
-                                    class="bi bi-speedometer2 me-2"></i>201 MPH</p>
-                            <p class="text-secondary small mb-4">Command the road with the wind in your hair. A visceral
-                                open-top experience that redefines exotic travel.</p>
+                        <div class="p-4 d-flex flex-column flex-grow-1">
+                            <h3 class="playfair">Sunset Nomad</h3>
+
+                            <p class="text-secondary small mb-4">A warm, retro-inspired camper perfect for golden-hour
+                                adventures.</p>
                             <div class="d-flex justify-content-between align-items-center mt-auto">
-                                <span class="fs-5 fw-bold text-primary">$950 <small class="text-muted fw-normal">/
-                                        day</small></span>
-                                <a href="contact.html" class="btn btn-outline-primary btn-sm rounded-0">Inquire</a>
+                                <span class="fs-5 fw-bold text-primary">₹5,200 <small class="text-muted fw-normal">/
+                                        night</small></span>
+                                <a href="contact.html" class="btn btn-outline-primary btn-sm rounded-0">Book Now</a>
                             </div>
                         </div>
                     </div>
@@ -274,21 +269,20 @@
 
                 <!-- Fleet Item 6 -->
                 <div class="col-md-6 col-lg-4">
-                    <div class="trailer-card h-100 border-0 shadow-sm">
+                    <div class="trailer-card d-flex flex-column h-100 border-0 shadow-sm">
                         <div class="position-relative overflow-hidden">
-                            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSqKgPuMIbqoCLadML--ZK4pXfvfrfNGvZqfQ&s"
+                            <img src="https://s3.amazonaws.com/images.gearjunkie.com/uploads/2023/10/002-Gear-Junkie-Rugged-Camping-Trailer-Guide-Arktos-G12-exterior-overall-with-tow-vehicle.jpg"
                                 class="img-fluid transition-transform" alt="Classic V12">
                         </div>
-                        <div class="p-4">
-                            <h3 class="playfair">The V12 Heritage</h3>
-                            <p class="small text-muted mb-3"><i class="bi bi-gear-wide-connected me-2"></i>Manual | <i
-                                    class="bi bi-speedometer2 me-2"></i>150 MPH</p>
-                            <p class="text-secondary small mb-4">The pinnacle of 1960s elegance. A V12 heart wrapped in
-                                a body that many consider the most beautiful ever made.</p>
+                        <div class="p-4 d-flex flex-column flex-grow-1">
+                            <h3 class="playfair">Rustic Escape Caravan</h3>
+
+                            <p class="text-secondary small mb-4">Compact, charming, and ideal for off-grid experiences.
+                            </p>
                             <div class="d-flex justify-content-between align-items-center mt-auto">
-                                <span class="fs-5 fw-bold text-primary">$700 <small class="text-muted fw-normal">/
-                                        day</small></span>
-                                <a href="contact.html" class="btn btn-outline-primary btn-sm rounded-0">Inquire</a>
+                                <span class="fs-5 fw-bold text-primary">₹4,900 <small class="text-muted fw-normal">/
+                                        night</small></span>
+                                <a href="contact.html" class="btn btn-outline-primary btn-sm rounded-0">Book Now</a>
                             </div>
                         </div>
                     </div>
@@ -303,32 +297,33 @@
             <div class="text-center mb-5">
                 <h6 class="text-primary text-uppercase tracking-widest mb-2 fw-bold" style="letter-spacing: 2px;">Elite
                     Care</h6>
-                <h2 class="playfair display-5">The Silver Standard</h2>
-                <p class="text-muted">Every vehicle in our collection is maintained to a showroom-ready standard.</p>
+                <h2 class="playfair display-5">The Vintage Standard</h2>
+                <p class="text-muted">Every trailer in our collection is restored and maintained to timeless perfection.
+                </p>
             </div>
             <div class="row g-4 text-center">
                 <div class="col-md-4">
                     <div class="p-4 bg-white rounded shadow-sm h-100">
                         <i class="bi bi-shield-check text-primary fs-1 mb-3"></i>
-                        <h4 class="playfair">Concierge Inspection</h4>
-                        <p class="small text-muted mb-0">Multi-point mechanical and safety certification before every
-                            handover to ensure flawless performance.</p>
+                        <h4 class="playfair">Craftsmanship Inspection</h4>
+                        <p class="small text-muted mb-0">Each trailer undergoes a detailed multi-point inspection,
+                            ensuring safety, durability, and flawless vintage charm before every handover.</p>
                     </div>
                 </div>
                 <div class="col-md-4">
                     <div class="p-4 bg-white rounded shadow-sm h-100">
                         <i class="bi bi-truck text-primary fs-1 mb-3"></i>
-                        <h4 class="playfair">White-Glove Delivery</h4>
-                        <p class="small text-muted mb-0">We deliver your chosen masterpiece directly to your location,
-                            anywhere within the continental United States.</p>
+                        <h4 class="playfair">Hassle-Free Delivery</h4>
+                        <p class="small text-muted mb-0">We deliver your chosen trailer directly to your destination,
+                            fully set up and ready so you can relax and enjoy your experience.</p>
                     </div>
                 </div>
                 <div class="col-md-4">
                     <div class="p-4 bg-white rounded shadow-sm h-100">
                         <i class="bi bi-clock-history text-primary fs-1 mb-3"></i>
-                        <h4 class="playfair">24/7 Roadside Support</h4>
-                        <p class="small text-muted mb-0">Drive with total peace of mind knowing our dedicated mechanical
-                            team is only a phone call away, day or night.</p>
+                        <h4 class="playfair">24/7 Support on the Road</h4>
+                        <p class="small text-muted mb-0">Enjoy peace of mind with our dedicated support team available
+                            anytime during your journey, wherever the road takes you.</p>
                     </div>
                 </div>
             </div>
@@ -340,7 +335,7 @@
         <div class="container py-4">
             <div class="text-center mb-5">
                 <h2 class="playfair display-5">Your Journey Begins Here</h2>
-                <p class="text-muted">A seamless experience from first click to the first drive.</p>
+                <p class="text-muted">A seamless vintage experience from booking to your first adventure.</p>
             </div>
             <div class="row g-0 justify-content-center">
                 <div class="col-lg-10">
@@ -353,8 +348,8 @@
                                         <span class="h3 mb-0 text-primary fw-bold">01</span>
                                     </div>
                                     <h5 class="playfair">Select</h5>
-                                    <p class="small text-muted px-3 mb-0">Choose your legendary vehicle from our curated
-                                        collection.</p>
+                                    <p class="small text-muted px-3 mb-0">Explore our curated collection of restored
+                                        vintage trailers and choose the one that matches your style and journey.</p>
                                 </div>
                             </div>
                         </div>
@@ -365,9 +360,9 @@
                                         style="width: 80px; height: 80px;">
                                         <span class="h3 mb-0 text-primary fw-bold">02</span>
                                     </div>
-                                    <h5 class="playfair">Inquire</h5>
-                                    <p class="small text-muted px-3 mb-0">Request your dates and confirm bespoke
-                                        delivery details.</p>
+                                    <h5 class="playfair">Reserve</h5>
+                                    <p class="small text-muted px-3 mb-0">Pick your travel dates, submit your request,
+                                        and confirm your booking with ease through our simple process.</p>
                                 </div>
                             </div>
                         </div>
@@ -378,9 +373,10 @@
                                         style="width: 80px; height: 80px;">
                                         <span class="h3 mb-0 text-primary fw-bold">03</span>
                                     </div>
-                                    <h5 class="playfair">Validate</h5>
-                                    <p class="small text-muted px-3 mb-0">Quick digital verification of credentials and
-                                        insurance coverage.</p>
+                                    <h5 class="playfair">Confirm</h5>
+                                    <p class="small text-muted px-3 mb-0">We verify your booking and prepare your
+                                        trailer, ensuring everything is ready for a smooth and comfortable experience.
+                                    </p>
                                 </div>
                             </div>
                         </div>
@@ -391,9 +387,9 @@
                                         style="width: 80px; height: 80px;">
                                         <span class="h3 mb-0 text-primary fw-bold">04</span>
                                     </div>
-                                    <h5 class="playfair">Ignite</h5>
-                                    <p class="small text-muted px-3 mb-0">Receive your keys and experience the soul of
-                                        automotive history community.</p>
+                                    <h5 class="playfair">Start</h5>
+                                    <p class="small text-muted px-3 mb-0">Pick up your trailer or choose delivery, then
+                                        hit the road and create unforgettable memories wherever you go.</p>
                                 </div>
                             </div>
                         </div>
@@ -410,7 +406,7 @@
                 <div class="col-lg-4 mb-4">
                     <a href="index.html" class="text-decoration-none">
                         <div class="playfair logo-text mb-4" style="color: var(--primary) !important;"><i
-                                class="bi bi-car-front-fill me-2"></i>Silver Studio</div>
+                                class="bi bi-house-heart me-2"></i>Silver Studio</div>
                     </a>
                     <p class="text-accent mb-4">Nostalgic trailer rentals and master-class restoration. Your journey
                         through history begins here.</p>

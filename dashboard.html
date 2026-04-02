@@ -61,6 +61,8 @@
             padding: 2rem;
             background: #f8f9fa;
             transition: var(--transition);
+            min-width: 0; /* Crucial for preventing flex container expansion by wide content */
+            overflow: hidden;
         }
 
         [data-theme="dark"] .main-content {
@@ -136,18 +138,31 @@
         }
 
         .table-responsive {
-            overflow-x: auto;
+            display: block;
+            width: 100%;
+            overflow-x: auto !important;
             -webkit-overflow-scrolling: touch;
+            padding-bottom: 10px;
+            margin-bottom: 1rem;
+        }
+
+        .table-responsive::-webkit-scrollbar {
+            height: 8px;
+        }
+
+        .table-responsive::-webkit-scrollbar-track {
+            background: rgba(0, 0, 0, 0.05);
+            border-radius: 10px;
+        }
+
+        .table-responsive::-webkit-scrollbar-thumb {
+            background: var(--primary);
+            border-radius: 10px;
         }
 
         .table-responsive table {
-            min-width: 800px; /* Force minimum width to ensure scrollability on mobile */
-        }
-
-        @media (max-width: 768px) {
-            .table-responsive table {
-                min-width: 700px;
-            }
+            min-width: 1000px !important;
+            margin-bottom: 0;
         }
 
         .progress {
@@ -241,7 +256,7 @@
             <div class="px-4 mb-4">
                 <a href="index.html" class="text-decoration-none">
                     <div class="playfair logo-text text-primary fs-4">
-                        <i class="bi bi-car-front-fill me-2"></i>Silver Studio
+                        <i class="bi bi-house-heart me-2"></i>Silver Studio
                     </div>
                 </a>
             </div>
@@ -255,7 +270,7 @@
                     <i class="bi bi-speedometer2"></i> Overview
                 </div>
                 <div class="nav-link-dash" data-target="fleet">
-                    <i class="bi bi-car-front"></i> Fleet Management
+                    <i class="bi bi-truck"></i> Fleet Management
                 </div>
                 <div class="nav-link-dash" data-target="restoration">
                     <i class="bi bi-tools"></i> Restoration Lab
@@ -275,7 +290,7 @@
             </nav>
 
             <div class="border-top mt-auto mb-3 pt-3">
-                <a href="login.html" class="nav-link-dash text-danger">
+                <a href="index.html" class="nav-link-dash text-danger">
                     <i class="bi bi-box-arrow-left"></i> Logout
                 </a>
             </div>
@@ -284,19 +299,19 @@
         <!-- Main Content -->
         <main class="main-content">
             <header class="d-flex flex-column mb-4 position-relative">
-                <!-- TOP ROW: Branding & Primary Toggle (Tablet/Mobile Only) -->
-                <div class="d-flex d-lg-none justify-content-between align-items-center w-100 mb-4 px-1">
+                <!-- Mobile Navigation Bar (Shown on < 992px) -->
+                <div class="d-flex d-lg-none justify-content-between align-items-center w-100 mb-4 p-3 bg-theme-dark border shadow-sm rounded-4">
                     <a href="index.html" class="text-decoration-none">
-                        <div class="playfair logo-text text-primary fs-4">
-                            <i class="bi bi-car-front-fill me-1"></i>Silver Studio
+                        <div class="playfair logo-text text-primary fs-4 mb-0">
+                            <i class="bi bi-house-heart me-1"></i>Silver Studio
                         </div>
                     </a>
 
                     <!-- Mobile/Tablet Hamburger (Far Right) -->
                     <div class="dashboard-hamburger ms-auto">
-                        <button class="btn btn-dark p-0" id="mobileDashToggle"
-                            style="width: 44px; height: 44px; display: flex; align-items: center; justify-content: center;">
-                            <i class="bi bi-list fs-1 text-primary"></i>
+                        <button class="btn btn-primary d-flex align-items-center justify-content-center" id="mobileDashToggle"
+                            style="width: 40px; height: 40px; border-radius: 10px; box-shadow: 0 4px 10px rgba(var(--primary-rgb), 0.2);">
+                            <i class="bi bi-list fs-3 text-white"></i>
                         </button>
                     </div>
                 </div>
@@ -317,7 +332,7 @@
                             <i class="bi bi-speedometer2 me-3"></i> Overview
                         </a>
                         <a href="javascript:void(0)" class="dash-mobile-link" data-target="fleet">
-                            <i class="bi bi-car-front me-3"></i> Fleet Management
+                            <i class="bi bi-truck me-3"></i> Fleet Management
                         </a>
                         <a href="javascript:void(0)" class="dash-mobile-link" data-target="restoration">
                             <i class="bi bi-tools me-3"></i> Restoration Lab
@@ -334,6 +349,11 @@
                         <a href="javascript:void(0)" class="dash-mobile-link" data-target="settings">
                             <i class="bi bi-gear me-3"></i> Settings
                         </a>
+                        <div class="border-top mt-2 pt-2">
+                            <a href="index.html" class="dash-mobile-link text-danger">
+                                <i class="bi bi-box-arrow-left me-3"></i> Logout
+                            </a>
+                        </div>
                     </nav>
                 </div>
 
@@ -370,6 +390,12 @@
                                     height="32" style="object-fit: cover;">
                                 <span class="d-none d-lg-inline text-primary fs-6">John Doe</span>
                             </a>
+                            <ul class="dropdown-menu dropdown-menu-end shadow border-0 mt-2">
+                                <li><a class="dropdown-item" href="javascript:void(0)" data-target="settings"><i class="bi bi-person me-2"></i> Profile</a></li>
+                                <li><a class="dropdown-item" href="javascript:void(0)" data-target="settings"><i class="bi bi-gear me-2"></i> Settings</a></li>
+                                <li><hr class="dropdown-divider"></li>
+                                <li><a class="dropdown-item text-danger" href="index.html"><i class="bi bi-box-arrow-left me-2"></i> Logout</a></li>
+                            </ul>
                         </div>
                     </div>
                 </div>
@@ -390,7 +416,7 @@
                         <div class="card border-0 shadow-sm p-4 text-center h-100">
                             <h6 class="text-muted small text-uppercase mb-2 tracking-widest fw-bold">Lab Progress</h6>
                             <h2 class="playfair mb-0">78%</h2>
-                            <p class="small text-muted mt-2 mb-0">1957 Roadster Overhaul</p>
+                            <p class="small text-muted mt-2 mb-0">1954 Spartan Restoration</p>
                         </div>
                     </div>
                     <div class="col-md-4">
@@ -409,7 +435,7 @@
                             class="list-group-item bg-transparent px-0 py-3 d-flex justify-content-between align-items-center">
                             <div>
                                 <h6 class="mb-1">Fleet Inquiry Approved</h6>
-                                <p class="small text-muted mb-0">Your request for "The Rosso Legend" has been cleared
+                                <p class="small text-muted mb-0">Your request for "The Aluminum Icon" has been cleared
                                     for June 12-15.</p>
                             </div>
                             <span class="badge bg-light text-muted fw-normal">2h ago</span>
@@ -418,7 +444,8 @@
                             class="list-group-item bg-transparent px-0 py-3 d-flex justify-content-between align-items-center">
                             <div>
                                 <h6 class="mb-1">Restoration Milestone</h6>
-                                <p class="small text-muted mb-0">Engine block installation completed on the '57 Roadster
+                                <p class="small text-muted mb-0">Custom cabinetry installation completed on the '54
+                                    Spartan
                                     project.</p>
                             </div>
                             <span class="badge bg-light text-muted fw-normal">Yesterday</span>
@@ -427,8 +454,8 @@
                             class="list-group-item bg-transparent px-0 py-3 d-flex justify-content-between align-items-center border-0">
                             <div>
                                 <h6 class="mb-1">Gala Invitation</h6>
-                                <p class="small text-muted mb-0">Official invite for the "Curators of Chrome" annual
-                                    event in London.</p>
+                                <p class="small text-muted mb-0">Official invite for the "Curators of Classic" annual
+                                    rally in Napa Valley.</p>
                             </div>
                             <span class="badge bg-light text-muted fw-normal">3 days ago</span>
                         </div>
@@ -444,21 +471,21 @@
                         <table class="table table-sm align-middle text-nowrap">
                             <thead>
                                 <tr class="text-muted small text-uppercase tracking-wider border-0">
-                                    <th>Vehicle Asset</th>
-                                    <th>Service Window</th>
-                                    <th>Total Tier Investment</th>
+                                    <th>Trailer Asset</th>
+                                    <th>Rental Window</th>
+                                    <th>Stay Investment</th>
                                     <th>Status Palette</th>
-                                    <th class="text-end">Curator Tools</th>
+                                    <th class="text-end">Rental Tools</th>
                                 </tr>
                             </thead>
                             <tbody>
                                 <tr>
                                     <td>
                                         <div class="d-flex align-items-center gap-3">
-                                            <img src="https://trinityrental.com/_next/image?url=https%3A%2F%2Fstorage.googleapis.com%2Ftrinityrental-e51d5.appspot.com%2Fmedium_IMG_6954_7d61d350b1%2Fmedium_IMG_6954_7d61d350b1.webp&w=3840&q=75"
+                                            <img src="https://apis.xogrp.com/media-api/images/b25d61d0-cb84-11ee-ad20-85fe93c24fe7"
                                                 class="rounded shadow-sm" width="60" height="40"
                                                 style="object-fit: cover;">
-                                            <span class="fw-bold">The Rosso Legend</span>
+                                            <span class="fw-bold">The Aluminum Icon</span>
                                         </div>
                                     </td>
                                     <td class="small text-muted">June 12 - June 15, 2026</td>
@@ -474,10 +501,10 @@
                                 <tr>
                                     <td>
                                         <div class="d-flex align-items-center gap-3">
-                                            <img src="https://images.unsplash.com/photo-1614200187524-dc4b892acf16?auto=format&fit=crop&w=600"
+                                            <img src="https://i.pinimg.com/236x/d1/cf/a9/d1cfa9acbf6d49d51c10465ba248d026.jpg"
                                                 class="rounded shadow-sm" width="60" height="40"
                                                 style="object-fit: cover;">
-                                            <span class="fw-bold">The Stealth GT</span>
+                                            <span class="fw-bold">The Silver Bullet</span>
                                         </div>
                                     </td>
                                     <td class="small text-muted">March 10 - March 12, 2026</td>
@@ -519,8 +546,8 @@
                                                 <i class="bi bi-tools fs-5"></i>
                                             </div>
                                             <div>
-                                                <span class="fw-bold d-block">1957 Roadster 'Iron Heart'</span>
-                                                <small class="text-muted">Master Build #572</small>
+                                                <span class="fw-bold d-block">1954 Spartan 'Silver Lining'</span>
+                                                <small class="text-muted">Master Build #542</small>
                                             </div>
                                         </div>
                                     </td>
@@ -528,7 +555,7 @@
                                         <div class="progress" style="height: 6px;">
                                             <div class="progress-bar bg-primary" style="width: 78%"></div>
                                         </div>
-                                        <small class="text-muted mt-1 d-block">78% Progress Calibrated</small>
+                                        <small class="text-muted mt-1 d-block">78% Integrity Calibrated</small>
                                     </td>
                                     <td>
                                         <div class="d-flex gap-2">
@@ -565,7 +592,7 @@
                             <thead>
                                 <tr class="small text-muted text-uppercase tracking-wider">
                                     <th>Prototype Preview</th>
-                                    <th>Model Genealogy</th>
+                                    <th>Model Heritage</th>
                                     <th>Session Investment</th>
                                     <th>Current Asset Availability</th>
                                     <th class="text-end">Selection Protocol</th>
@@ -573,9 +600,9 @@
                             </thead>
                             <tbody>
                                 <tr>
-                                    <td><img src="https://images.unsplash.com/photo-1583121274602-3e2820c69888?auto=format&fit=crop&w=600"
-                                            class="wishlist-img shadow-sm" alt="Track Special"></td>
-                                    <td class="fw-bold">The Track Special</td>
+                                    <td><img src="https://images.unsplash.com/photo-1523987355523-c7b5b0dd90a7?auto=format&fit=crop&w=600"
+                                            class="wishlist-img shadow-sm" alt="Retro Rambler"></td>
+                                    <td class="fw-bold">The Retro Rambler</td>
                                     <td class="text-primary fw-bold fs-6">$650</td>
                                     <td>
                                         <div class="d-flex align-items-center gap-2">
@@ -590,7 +617,7 @@
                                     </td>
                                 </tr>
                                 <tr>
-                                    <td><img src="https://images.unsplash.com/photo-1503376760367-e9a82cdcb813?auto=format&fit=crop&w=600"
+                                    <td><img src="https://images.unsplash.com/photo-1523987355523-c7b5b0dd90a7?auto=format&fit=crop&w=600"
                                             class="wishlist-img shadow-sm" alt="Classic Icon"></td>
                                     <td class="fw-bold">Airstream '64 Revival</td>
                                     <td class="text-primary fw-bold fs-6">$450</td>
@@ -622,10 +649,10 @@
                         style="background: url('https://images.unsplash.com/photo-1492684223066-81342ee5ff30?auto=format&fit=crop&w=1200') center; background-size: cover; opacity: 0.3; z-index: 1;">
                     </div>
                     <div class="position-relative" style="z-index: 2;">
-                        <h2 class="playfair mb-3">Annual Curators Gala</h2>
-                        <p class="mb-4">London | September 14, 2026</p>
+                        <h2 class="playfair mb-3">Vintage Curators Rally</h2>
+                        <p class="mb-4">Napa Valley | September 14, 2026</p>
                         <p class="small text-accent mx-auto mb-4" style="max-width: 400px;">An exclusive evening for
-                            Silver Studio collectors and automotive aficionados. Private unveilings and world-class
+                            Silver Studio collectors and vintage travel aficionados. Private unveilings and world-class
                             networking.</p>
                         <button class="btn btn-primary px-4 py-2">Confirm Attendance</button>
                     </div>
@@ -640,7 +667,7 @@
                         <div class="card border-0 shadow-sm p-4 text-center">
                             <i class="bi bi-file-pdf fs-1 text-danger mb-3"></i>
                             <h6 class="mb-1">Rental Agreement</h6>
-                            <p class="small text-muted mb-3">#RA-44299 - Stealth GT</p>
+                            <p class="small text-muted mb-3">#RA-44299 - Silver Bullet</p>
                             <button class="btn btn-sm btn-outline-primary w-100"><i class="bi bi-download me-2"></i>
                                 Download</button>
                         </div>
@@ -649,7 +676,7 @@
                         <div class="card border-0 shadow-sm p-4 text-center">
                             <i class="bi bi-file-pdf fs-1 text-danger mb-3"></i>
                             <h6 class="mb-1">Restoration Master Plan</h6>
-                            <p class="small text-muted mb-3">Project: 'Iron Heart'</p>
+                            <p class="small text-muted mb-3">Project: 'Silver Lining'</p>
                             <button class="btn btn-sm btn-outline-primary w-100"><i class="bi bi-download me-2"></i>
                                 Download</button>
                         </div>

@@ -20,7 +20,7 @@
     <link rel="stylesheet" href="css/styles.css">
     <link rel="icon" type="image/png" href="assets/favicon.png">
     <script>
-        (function() {
+        (function () {
             const savedTheme = localStorage.getItem('theme');
             if (savedTheme === 'dark') {
                 document.documentElement.setAttribute('data-theme', 'dark');
@@ -112,6 +112,45 @@
         [data-theme="dark"] .text-muted {
             color: #aaa !important;
         }
+
+        @media (max-width: 1024px) {
+
+            .auth-section,
+            .auth-section .auth-card,
+            .auth-section .form-label,
+            .auth-section .form-check,
+            .auth-section .form-check-label,
+            .auth-section .input-group,
+            .auth-section .form-control {
+                text-align: start !important;
+                justify-content: flex-start !important;
+                align-items: flex-start !important;
+            }
+
+            .auth-section .form-label {
+                display: block !important;
+                width: 100% !important;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .auth-footer {
+                display: grid !important;
+                grid-template-columns: 1fr !important;
+                gap: 1rem !important;
+                width: 100% !important;
+            }
+
+            .auth-footer>* {
+                margin: 0 !important;
+                width: 100% !important;
+                text-align: start !important;
+            }
+        }
+
+        .was-validated .form-control:invalid~.invalid-feedback {
+            display: block !important;
+        }
     </style>
 </head>
 
@@ -131,35 +170,37 @@
             <div class="auth-logo">
                 <a href="index.html" class="text-decoration-none d-block mb-3">
                     <div class="playfair logo-text text-primary fs-3">
-                        <i class="bi bi-car-front-fill me-2"></i>Silver Studio
+                        <i class="bi bi-house-heart me-2"></i>Silver Studio
                     </div>
                 </a>
                 <h2 class="playfair text-primary">Welcome Back</h2>
                 <p class="text-muted small">Access your automotive adventure dashboard</p>
             </div>
 
-            <form id="loginForm">
+            <form id="loginForm" class="needs-validation" novalidate>
                 <div class="mb-4">
                     <label class="form-label small fw-bold text-muted">Email Address</label>
-                    <div class="input-group">
+                    <div class="input-group has-validation">
                         <span class="input-group-text bg-light border-0"><i
                                 class="bi bi-envelope text-muted"></i></span>
                         <input type="email" class="form-control bg-light border-0" placeholder="Email" required>
+                        <div class="invalid-feedback">Please enter your email address.</div>
                     </div>
                 </div>
 
                 <div class="mb-3">
                     <label class="form-label small fw-bold text-muted">Password</label>
-                    <div class="input-group">
+                    <div class="input-group has-validation">
                         <span class="input-group-text bg-light border-0"><i class="bi bi-lock text-muted"></i></span>
                         <input type="password" class="form-control bg-light border-0" id="passwordInput"
                             placeholder="Password" required>
                         <span class="input-group-text bg-light border-0 cursor-pointer" id="togglePassword"><i
                                 class="bi bi-eye text-muted"></i></span>
+                        <div class="invalid-feedback">Please enter your password.</div>
                     </div>
                 </div>
 
-                <div class="d-flex justify-content-between align-items-center mb-4 small">
+                <div class="d-flex justify-content-between align-items-center mb-4 small auth-footer">
                     <div class="form-check">
                         <input class="form-check-input" type="checkbox" id="rememberMe">
                         <label class="form-check-label text-muted" for="rememberMe">Remember Me</label>
@@ -171,18 +212,21 @@
 
                 <div class="text-center position-relative mb-4">
                     <hr class="text-muted">
-                    <span class="position-absolute top-50 start-50 translate-middle bg-white auth-separator px-3 small text-muted"
+                    <span
+                        class="position-absolute top-50 start-50 translate-middle bg-white auth-separator px-3 small text-muted"
                         style="z-index: 1;">OR</span>
                 </div>
 
                 <div class="row g-3">
                     <div class="col-6">
-                        <button type="button" class="btn social-btn py-3 w-100 d-flex align-items-center justify-content-center">
+                        <button type="button"
+                            class="btn social-btn py-3 w-100 d-flex align-items-center justify-content-center">
                             <img src="https://www.google.com/favicon.ico" class="me-2" style="width: 20px;"> Google
                         </button>
                     </div>
                     <div class="col-6">
-                        <button type="button" class="btn social-btn py-3 w-100 d-flex align-items-center justify-content-center"
+                        <button type="button"
+                            class="btn social-btn py-3 w-100 d-flex align-items-center justify-content-center"
                             style="color: #1877F2;">
                             <i class="bi bi-facebook fs-5 me-2"></i> Facebook
                         </button>
@@ -215,6 +259,21 @@
                 }
             });
         }
+
+        // Form validation
+        document.addEventListener('DOMContentLoaded', function () {
+            'use strict'
+            const forms = document.querySelectorAll('.needs-validation')
+            Array.prototype.slice.call(forms).forEach(function (form) {
+                form.addEventListener('submit', function (event) {
+                    if (!form.checkValidity()) {
+                        event.preventDefault()
+                        event.stopPropagation()
+                    }
+                    form.classList.add('was-validated')
+                }, false)
+            })
+        });
     </script>
 </body>
 

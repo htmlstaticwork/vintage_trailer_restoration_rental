@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -20,7 +21,7 @@
     <link rel="stylesheet" href="css/styles.css">
     <link rel="icon" type="image/png" href="assets/favicon.png">
     <script>
-        (function() {
+        (function () {
             const savedTheme = localStorage.getItem('theme');
             if (savedTheme === 'dark') {
                 document.documentElement.setAttribute('data-theme', 'dark');
@@ -29,13 +30,14 @@
         })();
     </script>
 </head>
+
 <body>
 
     <!-- Header & Navigation -->
     <header class="navbar navbar-expand-lg sticky-top">
         <div class="container">
             <a class="navbar-brand playfair logo-text text-primary" href="index.html">
-                <i class="bi bi-car-front-fill me-2"></i>Silver Studio
+                <i class="bi bi-house-heart me-2"></i>Silver Studio
             </a>
 
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
@@ -67,13 +69,20 @@
                     </li>
                     <!-- Desktop Dashboard Dropdown -->
                     <li class="nav-item ms-3 d-none d-lg-flex align-items-center dropdown">
-                        <a class="nav-link dropdown-toggle no-caret" href="#" id="dashboardDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false" title="Portals">
+                        <a class="nav-link dropdown-toggle no-caret" href="#" id="dashboardDropdown" role="button"
+                            data-bs-toggle="dropdown" aria-expanded="false" title="Portals">
                             <i class="bi bi-speedometer2 fs-5"></i>
                         </a>
-                        <ul class="dropdown-menu dropdown-menu-end shadow border-0 mt-2" aria-labelledby="dashboardDropdown">
-                            <li><h6 class="dropdown-header small text-muted text-uppercase tracking-wider">Access Portals</h6></li>
-                            <li><a class="dropdown-item py-2" href="dashboard.html"><i class="bi bi-person-badge me-2"></i>Customer Portal</a></li>
-                            <li><a class="dropdown-item py-2" href="admin.html"><i class="bi bi-shield-lock me-2"></i>Admin Console</a></li>
+                        <ul class="dropdown-menu dropdown-menu-end shadow border-0 mt-2"
+                            aria-labelledby="dashboardDropdown">
+                            <li>
+                                <h6 class="dropdown-header small text-muted text-uppercase tracking-wider">Access
+                                    Portals</h6>
+                            </li>
+                            <li><a class="dropdown-item py-2" href="dashboard.html"><i
+                                        class="bi bi-person-badge me-2"></i>Customer Portal</a></li>
+                            <li><a class="dropdown-item py-2" href="admin.html"><i
+                                        class="bi bi-shield-lock me-2"></i>Admin Console</a></li>
                         </ul>
                     </li>
 
@@ -110,7 +119,8 @@
             <div class="row mb-5 text-center">
                 <div class="col-lg-8 mx-auto">
                     <h1 class="playfair display-4 mb-3">Reserve Your Vintage Journey</h1>
-                    <p class="lead text-muted">Select your dates and preferred trailer to start your nostalgic adventure.</p>
+                    <p class="lead text-muted">Select your dates and preferred trailer to start your nostalgic
+                        adventure.</p>
                 </div>
             </div>
 
@@ -154,7 +164,8 @@
                             <div class="col border p-2 bg-secondary text-white">S</div>
                             <div class="col border p-2 bg-secondary text-white">S</div>
                         </div>
-                        <p class="small text-muted mt-3 mb-0"><i class="bi bi-info-circle me-1"></i> Weekends tend to book fast. We recommend 2 months advance booking.</p>
+                        <p class="small text-muted mt-3 mb-0"><i class="bi bi-info-circle me-1"></i> Weekends tend to
+                            book fast. We recommend 2 months advance booking.</p>
                     </div>
                 </div>
 
@@ -183,22 +194,26 @@
                                 </div>
                                 <div class="col-md-6">
                                     <label class="form-label small fw-bold text-muted">Full Name</label>
-                                    <input type="text" class="form-control bg-light border-0 py-3" placeholder="John Doe" required>
+                                    <input type="text" class="form-control bg-light border-0 py-3"
+                                        placeholder="John Doe" required>
                                 </div>
                                 <div class="col-md-6">
                                     <label class="form-label small fw-bold text-muted">Phone Number</label>
-                                    <input type="tel" class="form-control bg-light border-0 py-3" placeholder="+1 (555) 000-0000" required>
+                                    <input type="tel" class="form-control bg-light border-0 py-3"
+                                        placeholder="+1 (555) 000-0000" required>
                                 </div>
                                 <div class="col-md-12 mb-3">
                                     <label class="form-label small fw-bold text-muted">Special Requests</label>
-                                    <textarea class="form-control bg-light border-0 py-3" rows="3" placeholder="Any special needs or travel preferences?"></textarea>
+                                    <textarea class="form-control bg-light border-0 py-3" rows="3"
+                                        placeholder="Any special needs or travel preferences?"></textarea>
                                 </div>
                                 <div class="col-md-12">
                                     <div class="d-flex justify-content-between align-items-center mb-4">
                                         <span class="small text-muted">Estimated Total (Taxes incl.)</span>
                                         <span class="fs-4 fw-bold text-primary">$540.00</span>
                                     </div>
-                                    <button type="submit" class="btn btn-primary btn-lg w-100 py-3">Proceed to Payment UI</button>
+                                    <button type="submit" class="btn btn-primary btn-lg w-100 py-3">Proceed to Payment
+                                        UI</button>
                                 </div>
                             </div>
                         </form>
@@ -215,7 +230,7 @@
                 <div class="col-lg-4 mb-4">
                     <a href="index.html" class="text-decoration-none">
                         <div class="playfair logo-text mb-4" style="color: var(--primary) !important;"><i
-                                class="bi bi-car-front-fill me-2"></i>Silver Studio</div>
+                                class="bi bi-house-heart me-2"></i>Silver Studio</div>
                     </a>
                     <p class="text-accent mb-4">Nostalgic trailer rentals and master-class restoration. Your journey
                         through history begins here.</p>
@@ -268,4 +283,5 @@
     <!-- Custom JS -->
     <script src="js/main.js"></script>
 </body>
+
 </html>
