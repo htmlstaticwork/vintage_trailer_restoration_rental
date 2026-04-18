@@ -45,17 +45,26 @@
 
             <div class="collapse navbar-collapse" id="navbarNav">
                 <ul class="navbar-nav ms-auto align-items-center">
-                    <li class="nav-item">
-                        <a class="nav-link" href="index.html">Home 1</a>
+                                        <!-- Home Navigation -->
+                    <li class="nav-item dropdown d-none d-xl-block">
+                        <a class="nav-link dropdown-toggle " href="#" id="homeDropdown" role="button"
+                            data-bs-toggle="dropdown" aria-expanded="false">Home</a>
+                        <ul class="dropdown-menu shadow border-0 mt-2" aria-labelledby="homeDropdown">
+                            <li><a class="dropdown-item py-2 " href="index.html">Home 1</a></li>
+                            <li><a class="dropdown-item py-2 " href="home-premium.html">Home 2</a></li>
+                        </ul>
                     </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="home-premium.html">Home 2</a>
+                    <li class="nav-item d-xl-none">
+                        <a class="nav-link " href="index.html">Home 1</a>
+                    </li>
+                    <li class="nav-item d-xl-none">
+                        <a class="nav-link " href="home-premium.html">Home 2</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="about.html">About</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" class="nav-link active" href="trailers.html">Trailers</a>
+                        <a class="nav-link active" href="trailers.html">Trailers</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="restoration.html">Restoration</a>
@@ -66,46 +75,39 @@
                     <li class="nav-item">
                         <a class="nav-link" href="contact.html">Contact</a>
                     </li>
-                    <!-- Desktop Dashboard Dropdown -->
-                    <li class="nav-item ms-3 d-none d-lg-flex align-items-center dropdown">
-                        <a class="nav-link dropdown-toggle no-caret" href="#" id="dashboardDropdown" role="button"
-                            data-bs-toggle="dropdown" aria-expanded="false" title="Portals">
-                            <i class="bi bi-speedometer2 fs-5"></i>
-                        </a>
-                        <ul class="dropdown-menu dropdown-menu-end shadow border-0 mt-2"
-                            aria-labelledby="dashboardDropdown">
-                            <li>
-                                <h6 class="dropdown-header small text-muted text-uppercase tracking-wider">Access
-                                    Portals</h6>
-                            </li>
-                            <li><a class="dropdown-item py-2" href="dashboard.html"><i
-                                        class="bi bi-person-badge me-2"></i>Customer Portal</a></li>
-                            <li><a class="dropdown-item py-2" href="admin.html"><i
-                                        class="bi bi-shield-lock me-2"></i>Admin Console</a></li>
-                        </ul>
-                    </li>
-
-                    <!-- Mobile Dashboard Links -->
-                    <li class="nav-item d-lg-none">
-                        <a class="nav-link" href="dashboard.html">Customer Portal</a>
-                    </li>
-                    <li class="nav-item d-lg-none">
-                        <a class="nav-link" href="admin.html">Admin Console</a>
-                    </li>
-                    <li class="nav-item ms-3 d-flex align-items-center">
-                        <a href="signup.html" class="nav-link" title="Sign Up">
-                            <i class="bi bi-person-circle fs-5"></i>
-                        </a>
-                    </li>
-                    <li class="nav-item ms-3 d-flex align-items-center gap-2">
+                    <!-- Navigation Icons -->
+                    <li class="nav-item ms-lg-3 d-flex align-items-center gap-3">
+                        <div class="dropdown d-none d-xl-block">
+                            <a class="nav-link dropdown-toggle no-caret p-0" href="#" id="dashboardDropdown" role="button"
+                                data-bs-toggle="dropdown" aria-expanded="false" title="Portals">
+                                <i class="bi bi-grid-fill fs-5"></i>
+                            </a>
+                            <ul class="dropdown-menu dropdown-menu-end shadow border-0 mt-2"
+                                aria-labelledby="dashboardDropdown">
+                                <li>
+                                    <h6 class="dropdown-header small text-muted text-uppercase tracking-wider">Access Portals</h6>
+                                </li>
+                                <li><a class="dropdown-item py-2" href="dashboard.html"><i class="bi bi-person-badge me-2"></i>Customer Portal</a></li>
+                                <li><a class="dropdown-item py-2" href="admin.html"><i class="bi bi-shield-lock me-2"></i>Admin Console</a></li>
+                            </ul>
+                        </div>
                         <button id="theme-toggle" class="theme-toggle" title="Toggle Theme">
                             <i class="bi bi-moon"></i>
                         </button>
                         <button id="rtl-toggle" class="rtl-toggle" title="Toggle RTL">
-                            <i class="bi bi-translate"></i>
+                            <i class="bi bi-arrow-left-right"></i>
                         </button>
                     </li>
-                    <li class="nav-item ms-3 d-flex align-items-center">
+
+                    <!-- Mobile Dashboard Links (Visible only in collapsed menu) -->
+                    <li class="nav-item d-xl-none">
+                        <a class="nav-link" href="dashboard.html">Customer Portal</a>
+                    </li>
+                    <li class="nav-item d-xl-none">
+                        <a class="nav-link" href="admin.html">Admin Console</a>
+                    </li>
+                    <li class="nav-item ms-2 d-flex align-items-center gap-3">
+                        <a href="signup.html" class="btn btn-outline-primary btn-sm text-nowrap">Sign Up</a>
                         <a href="booking.html" class="btn btn-primary btn-sm text-nowrap">Book Now</a>
                     </li>
                 </ul>
@@ -175,7 +177,7 @@
                             <p class="text-secondary small mb-4">A beautifully restored classic with polished aluminum
                                 and a cozy walnut interior.</p>
                             <div class="d-flex justify-content-between align-items-center mt-auto">
-                                <span class="fs-5 fw-bold text-primary">₹6,500 <small class="text-muted fw-normal">/
+                                <span class="fs-5 fw-bold text-primary">?6,500 <small class="text-muted fw-normal">/
                                         night</small></span>
                                 <a href="contact.html" class="btn btn-outline-primary btn-sm rounded-0">Book Now</a>
                             </div>
@@ -196,7 +198,7 @@
                             <p class="text-secondary small mb-4">A sun-kissed vintage trailer perfect for warm, scenic
                                 getaways.</p>
                             <div class="d-flex justify-content-between align-items-center mt-auto">
-                                <span class="fs-5 fw-bold text-primary">₹5,800 <small class="text-muted fw-normal">/
+                                <span class="fs-5 fw-bold text-primary">?5,800 <small class="text-muted fw-normal">/
                                         night</small></span>
                                 <a href="contact.html" class="btn btn-outline-primary btn-sm rounded-0">Book Now</a>
                             </div>
@@ -217,7 +219,7 @@
                             <p class="text-secondary small mb-4">A cozy retreat designed for peaceful stays surrounded
                                 by nature.</p>
                             <div class="d-flex justify-content-between align-items-center mt-auto">
-                                <span class="fs-5 fw-bold text-primary">₹4,900 <small class="text-muted fw-normal">/
+                                <span class="fs-5 fw-bold text-primary">?4,900 <small class="text-muted fw-normal">/
                                         night</small></span>
                                 <a href="contact.html" class="btn btn-outline-primary btn-sm rounded-0">Book Now</a>
                             </div>
@@ -238,7 +240,7 @@
                             <p class="text-secondary small mb-4">Light-filled interiors and breezy design for relaxing
                                 coastal escapes.</p>
                             <div class="d-flex justify-content-between align-items-center mt-auto">
-                                <span class="fs-5 fw-bold text-primary">₹5,500 <small class="text-muted fw-normal">/
+                                <span class="fs-5 fw-bold text-primary">?5,500 <small class="text-muted fw-normal">/
                                         night</small></span>
                                 <a href="contact.html" class="btn btn-outline-primary btn-sm rounded-0">Book Now</a>
                             </div>
@@ -259,7 +261,7 @@
                             <p class="text-secondary small mb-4">A warm, retro-inspired camper perfect for golden-hour
                                 adventures.</p>
                             <div class="d-flex justify-content-between align-items-center mt-auto">
-                                <span class="fs-5 fw-bold text-primary">₹5,200 <small class="text-muted fw-normal">/
+                                <span class="fs-5 fw-bold text-primary">?5,200 <small class="text-muted fw-normal">/
                                         night</small></span>
                                 <a href="contact.html" class="btn btn-outline-primary btn-sm rounded-0">Book Now</a>
                             </div>
@@ -280,7 +282,7 @@
                             <p class="text-secondary small mb-4">Compact, charming, and ideal for off-grid experiences.
                             </p>
                             <div class="d-flex justify-content-between align-items-center mt-auto">
-                                <span class="fs-5 fw-bold text-primary">₹4,900 <small class="text-muted fw-normal">/
+                                <span class="fs-5 fw-bold text-primary">?4,900 <small class="text-muted fw-normal">/
                                         night</small></span>
                                 <a href="contact.html" class="btn btn-outline-primary btn-sm rounded-0">Book Now</a>
                             </div>
@@ -461,3 +463,11 @@
 </body>
 
 </html>
+
+
+
+
+
+
+
+

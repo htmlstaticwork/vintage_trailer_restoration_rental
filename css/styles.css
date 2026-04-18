@@ -68,9 +68,11 @@
   .navbar {
     position: relative !important;
   }
+
   .navbar-expand-lg .navbar-toggler {
     display: block !important;
   }
+
   .navbar-expand-lg .navbar-collapse {
     display: none !important;
     position: absolute !important;
@@ -82,19 +84,22 @@
     flex-grow: 1 !important;
     align-items: center !important;
     text-align: center !important;
-    box-shadow: 0 15px 30px rgba(0,0,0,0.15);
+    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.15);
     background-color: #ffffff !important;
-    border-bottom: 1px solid rgba(0,0,0,0.05);
+    border-bottom: 1px solid rgba(0, 0, 0, 0.05);
   }
+
   [data-theme="dark"] .navbar-expand-lg .navbar-collapse {
     background-color: #1a1a1a !important;
-    box-shadow: 0 15px 40px rgba(0,0,0,0.6);
-    border-bottom: 1px solid rgba(255,255,255,0.05);
+    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.6);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
   }
+
   .navbar-expand-lg .navbar-collapse.show {
     padding-bottom: 2rem;
     display: block !important;
   }
+
   .navbar-expand-lg .navbar-nav {
     flex-direction: column !important;
     align-items: center !important;
@@ -102,12 +107,14 @@
     padding-bottom: 1.5rem;
     width: 100%;
   }
+
   .navbar-expand-lg .navbar-nav .nav-item {
     width: 100%;
     margin-left: 0 !important;
     margin-right: 0 !important;
     margin-bottom: 1rem;
   }
+
   .navbar-expand-lg .navbar-nav .nav-link {
     padding-left: 0 !important;
     padding-right: 0 !important;
@@ -288,7 +295,7 @@ body::before {
   color: var(--primary) !important;
 }
 
-.nav-link::after {
+.nav-link:not(.dropdown-toggle)::after {
   content: '';
   position: absolute;
   bottom: -4px;
@@ -299,13 +306,117 @@ body::before {
   transition: var(--transition);
 }
 
-.nav-link:hover::after,
-.nav-link.active::after {
+.nav-link:not(.dropdown-toggle):hover::after,
+.nav-link:not(.dropdown-toggle).active::after {
   width: 100%;
+}
+
+/* Active underline for Home dropdown toggle */
+.home-dropdown>.nav-link.active::before {
+  content: '';
+  position: absolute;
+  bottom: -4px;
+  left: 0;
+  width: 100%;
+  height: 2px;
+  background-color: var(--primary);
 }
 
 .no-caret::after {
   display: none !important;
+}
+
+/* ── Home Dropdown ───────────────────────────────────────────── */
+/* Parent toggle inherits active nav-link styling */
+.home-dropdown>.nav-link.active {
+  color: var(--primary) !important;
+  font-weight: 600;
+}
+
+/* Dropdown menu panel */
+.home-dropdown .dropdown-menu {
+  min-width: 200px;
+  border-radius: 8px;
+  padding: 0.5rem 0;
+  overflow: hidden;
+}
+
+[data-theme="dark"] .home-dropdown .dropdown-menu {
+  background-color: var(--card-bg);
+  border: 1px solid #333;
+}
+
+/* Dropdown items */
+.home-dropdown .dropdown-item {
+  font-weight: 500;
+  font-size: 0.95rem;
+  color: var(--text-secondary);
+  transition: var(--transition);
+  padding-left: 1.25rem;
+  padding-right: 1.25rem;
+}
+
+[data-theme="dark"] .home-dropdown .dropdown-item {
+  color: var(--text-primary);
+}
+
+.home-dropdown .dropdown-item:hover,
+.home-dropdown .dropdown-item:focus {
+  background-color: rgba(225, 27, 64, 0.08);
+  color: var(--primary);
+}
+
+.home-dropdown .dropdown-item.active {
+  background-color: transparent !important;
+  color: var(--primary) !important;
+  font-weight: 600;
+}
+
+/* Forcefully remove any background (especially blue) from active items in the navbar */
+.navbar-nav .active,
+.navbar-nav .nav-link.active,
+.navbar-nav .dropdown-item.active {
+  background-color: transparent !important;
+  color: var(--primary) !important;
+  font-weight: 600 !important;
+}
+
+/* ── Mobile / Hamburger: Home dropdown inside collapsed nav ──── */
+@media (max-width: 1024px) {
+
+  /* The dropdown itself becomes block-level inside the hamburger pane */
+  .home-dropdown {
+    width: 100%;
+    position: relative;
+  }
+
+  .home-dropdown>.nav-link {
+    justify-content: center;
+    width: 100%;
+  }
+
+  /* Override Bootstrap's position:absolute on the dropdown menu inside the
+     collapsed hamburger so it flows naturally without clipping */
+  .home-dropdown .dropdown-menu {
+    position: static !important;
+    float: none;
+    width: 100%;
+    box-shadow: none !important;
+    border: 1px solid rgba(0, 0, 0, 0.08);
+    margin-top: 0.25rem !important;
+    background-color: transparent !important;
+  }
+
+  [data-theme="dark"] .home-dropdown .dropdown-menu {
+    background-color: transparent !important;
+    border-color: rgba(255, 255, 255, 0.08);
+  }
+
+  .home-dropdown .dropdown-item {
+    text-align: center;
+    padding-left: 1rem;
+    padding-right: 1rem;
+  }
 }
 
 [data-theme="dark"] .form-control,
@@ -569,6 +680,7 @@ footer a:hover {
 
 /* Global Mobile/Tablet Centering & Stacking */
 @media (max-width: 1024px) {
+
   section,
   .footer,
   .footer .container,
@@ -612,7 +724,7 @@ footer a:hover {
     justify-content: space-between !important;
     text-align: inherit !important;
   }
-  
+
   .trailer-card .btn {
     margin-left: 0 !important;
     margin-right: 0 !important;
@@ -635,8 +747,6 @@ footer a:hover {
     text-align: left;
   }
 
-  .auth-section,
-  .auth-section .auth-card,
   .auth-section .form-label,
   .auth-section .form-check,
   .auth-section .form-check-label,
@@ -648,6 +758,10 @@ footer a:hover {
     align-items: flex-start !important;
   }
 
+  .auth-section .auth-card {
+    text-align: left !important;
+  }
+
   .auth-section .form-label {
     display: block !important;
     width: 100% !important;
@@ -656,7 +770,8 @@ footer a:hover {
   }
 
   .auth-section .input-group-text {
-    justify-content: center !important; /* Keep icons centered in their boxes */
+    justify-content: center !important;
+    /* Keep icons centered in their boxes */
   }
 }
 
@@ -676,8 +791,8 @@ footer a:hover {
   background-position: left calc(0.375em + 0.1875rem) center !important;
 }
 
-.was-validated .form-control:invalid ~ .invalid-feedback,
-.was-validated .form-check-input:invalid ~ .invalid-feedback {
+.was-validated .form-control:invalid~.invalid-feedback,
+.was-validated .form-check-input:invalid~.invalid-feedback {
   display: block !important;
   width: 100% !important;
   margin-top: 0.25rem !important;
@@ -686,8 +801,8 @@ footer a:hover {
 }
 
 /* Force validation visibility if bootstrap default is not working */
-.was-validated .form-control:invalid ~ .invalid-feedback,
-.was-validated .form-check-input:invalid ~ .invalid-feedback {
+.was-validated .form-control:invalid~.invalid-feedback,
+.was-validated .form-check-input:invalid~.invalid-feedback {
   display: block !important;
 }
 

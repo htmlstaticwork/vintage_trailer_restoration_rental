@@ -46,11 +46,20 @@
 
             <div class="collapse navbar-collapse" id="navbarNav">
                 <ul class="navbar-nav ms-auto align-items-center">
-                    <li class="nav-item">
+                    <!-- Home Navigation -->
+                    <li class="nav-item dropdown d-none d-xl-block">
+                        <a class="nav-link dropdown-toggle active" href="#" id="homeDropdown" role="button"
+                            data-bs-toggle="dropdown" aria-expanded="false">Home</a>
+                        <ul class="dropdown-menu shadow border-0 mt-2" aria-labelledby="homeDropdown">
+                            <li><a class="dropdown-item py-2" href="index.html">Home 1</a></li>
+                            <li><a class="dropdown-item py-2 active" href="home-premium.html">Home 2</a></li>
+                        </ul>
+                    </li>
+                    <li class="nav-item d-xl-none">
                         <a class="nav-link" href="index.html">Home 1</a>
                     </li>
-                    <li class="nav-item">
-                        <a class="nav-link" class="nav-link active" href="home-premium.html">Home 2</a>
+                    <li class="nav-item d-xl-none">
+                        <a class="nav-link active" href="home-premium.html">Home 2</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="about.html">About</a>
@@ -67,46 +76,39 @@
                     <li class="nav-item">
                         <a class="nav-link" href="contact.html">Contact</a>
                     </li>
-                    <!-- Desktop Dashboard Dropdown -->
-                    <li class="nav-item ms-3 d-none d-lg-flex align-items-center dropdown">
-                        <a class="nav-link dropdown-toggle no-caret" href="#" id="dashboardDropdown" role="button"
-                            data-bs-toggle="dropdown" aria-expanded="false" title="Portals">
-                            <i class="bi bi-speedometer2 fs-5"></i>
-                        </a>
-                        <ul class="dropdown-menu dropdown-menu-end shadow border-0 mt-2"
-                            aria-labelledby="dashboardDropdown">
-                            <li>
-                                <h6 class="dropdown-header small text-muted text-uppercase tracking-wider">Access
-                                    Portals</h6>
-                            </li>
-                            <li><a class="dropdown-item py-2" href="dashboard.html"><i
-                                        class="bi bi-person-badge me-2"></i>Customer Portal</a></li>
-                            <li><a class="dropdown-item py-2" href="admin.html"><i
-                                        class="bi bi-shield-lock me-2"></i>Admin Console</a></li>
-                        </ul>
-                    </li>
-
-                    <!-- Mobile Dashboard Links -->
-                    <li class="nav-item d-lg-none">
-                        <a class="nav-link" href="dashboard.html">Customer Portal</a>
-                    </li>
-                    <li class="nav-item d-lg-none">
-                        <a class="nav-link" href="admin.html">Admin Console</a>
-                    </li>
-                    <li class="nav-item ms-3 d-flex align-items-center">
-                        <a href="signup.html" class="nav-link" title="Sign Up">
-                            <i class="bi bi-person-circle fs-5"></i>
-                        </a>
-                    </li>
-                    <li class="nav-item ms-3 d-flex align-items-center gap-2">
+                    <!-- Navigation Icons -->
+                    <li class="nav-item ms-lg-3 d-flex align-items-center gap-3">
+                        <div class="dropdown d-none d-xl-block">
+                            <a class="nav-link dropdown-toggle no-caret p-0" href="#" id="dashboardDropdown" role="button"
+                                data-bs-toggle="dropdown" aria-expanded="false" title="Portals">
+                                <i class="bi bi-grid-fill fs-5"></i>
+                            </a>
+                            <ul class="dropdown-menu dropdown-menu-end shadow border-0 mt-2"
+                                aria-labelledby="dashboardDropdown">
+                                <li>
+                                    <h6 class="dropdown-header small text-muted text-uppercase tracking-wider">Access Portals</h6>
+                                </li>
+                                <li><a class="dropdown-item py-2" href="dashboard.html"><i class="bi bi-person-badge me-2"></i>Customer Portal</a></li>
+                                <li><a class="dropdown-item py-2" href="admin.html"><i class="bi bi-shield-lock me-2"></i>Admin Console</a></li>
+                            </ul>
+                        </div>
                         <button id="theme-toggle" class="theme-toggle" title="Toggle Theme">
                             <i class="bi bi-moon"></i>
                         </button>
                         <button id="rtl-toggle" class="rtl-toggle" title="Toggle RTL">
-                            <i class="bi bi-translate"></i>
+                            <i class="bi bi-arrow-left-right"></i>
                         </button>
                     </li>
-                    <li class="nav-item ms-3 d-flex align-items-center">
+
+                    <!-- Mobile Dashboard Links (Visible only in collapsed menu) -->
+                    <li class="nav-item d-xl-none">
+                        <a class="nav-link" href="dashboard.html">Customer Portal</a>
+                    </li>
+                    <li class="nav-item d-xl-none">
+                        <a class="nav-link" href="admin.html">Admin Console</a>
+                    </li>
+                    <li class="nav-item ms-2 d-flex align-items-center gap-3">
+                        <a href="signup.html" class="btn btn-outline-primary btn-sm text-nowrap">Sign Up</a>
                         <a href="booking.html" class="btn btn-primary btn-sm text-nowrap">Book Now</a>
                     </li>
                 </ul>
@@ -215,7 +217,7 @@
                             <h4 class="playfair">Silver Moon Airstream</h4>
                             <p class="small text-muted mb-3">A polished 1960s icon with modern comfort.</p>
                             <div class="d-flex justify-content-between align-items-center">
-                                <span class="fw-bold">₹6500 / night</span>
+                                <span class="fw-bold">?6500 / night</span>
                                 <a href="trailer-detail.html" class="btn btn-outline-primary btn-sm">Book Now</a>
                             </div>
                         </div>
@@ -229,7 +231,7 @@
                             <h4 class="playfair">Sunset Retro Caravan</h4>
                             <p class="small text-muted mb-3">Colorful vintage charm for relaxed getaways.</p>
                             <div class="d-flex justify-content-between align-items-center">
-                                <span class="fw-bold">₹5,200 / night</span>
+                                <span class="fw-bold">?5,200 / night</span>
                                 <a href="trailer-detail.html" class="btn btn-outline-primary btn-sm">Book Now</a>
                             </div>
                         </div>
@@ -243,7 +245,7 @@
                             <h4 class="playfair">Forest Escape Camper</h4>
                             <p class="small text-muted mb-3">Cozy, compact trailer perfect for nature stays.</p>
                             <div class="d-flex justify-content-between align-items-center">
-                                <span class="fw-bold">₹4,800 / night</span>
+                                <span class="fw-bold">?4,800 / night</span>
                                 <a href="trailer-detail.html" class="btn btn-outline-primary btn-sm">Book Now</a>
                             </div>
                         </div>
